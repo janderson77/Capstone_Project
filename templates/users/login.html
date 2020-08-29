@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+        <!--=====================================-->
+        <!--=           Category Start        	=-->
+        <!--=====================================-->
+        <section class="inner-page-banner bg-common" data-bg-image="media/figure/banner1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumbs-area">
+                            <h1>Login</h1>
+                            <ul>
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>Login</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=        Login Form Start        	=-->
+        <!--=====================================-->
+        <section class="error-section">
+            <div class="container d-flex flex-column align-items-center justify-content-center">
+                <div class="col-6 d-flex flex-column">
+                    <p>Don't have an account? Register <a href="/users/register">HERE</a></p>
+                    <form method="POST" id="user_form">
+                        {{ form.hidden_tag() }}
+                    
+                        {% for field in form if field.widget.input_type != 'hidden' %}
+                          {% for error in field.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                          {% endfor %}
+                          {{ field(placeholder=field.label.text, class="form-control") }}
+                        {% endfor %}
+                        <div class="d-flex flex-column align-items-center"><div>
+                            <button class="item-btn">Log in</button>
+                        </div></div>
+                        
+                      </form>
+                </div>
+            </div>
+        </section>
+        
+{% endblock %}

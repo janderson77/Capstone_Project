@@ -1,0 +1,868 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <!-- Meta Data -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/media/favicon.png">
+
+    <!-- Dependencies CSS -->
+    <link rel="stylesheet" href="/static/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/all.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="/static/animate.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/owl.theme.default.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/sal.css" type="text/css">
+    <link rel="stylesheet" href="/static/select2.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/nivo-slider.css" type="text/css">
+    <link rel="stylesheet" href="/static/meanmenu.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/app.css" type="text/css">
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,700&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="sticky-header bg-aash">
+    <!--[if IE]>
+	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  	<![endif]-->
+    <!-- Preloader Start Here -->
+    <div id="preloader"></div>
+    <!-- Preloader End Here -->
+    <!-- Back To Top Start Here -->
+    <a href="#main-wrapper" data-type="section-switch" class="scrollup">
+        <i class="fas fa-angle-double-up"></i>
+    </a>
+    <!-- Back To Top End Here -->
+    <div id="main-wrapper" class="fh-main-wrapper">
+
+        <!--=====================================-->
+        <!--=           Header Menu Start      =-->
+        <!--=====================================-->
+        <header class="header">
+            <div id="header-topbar" class="header-topbar">
+                <div class="container">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-lg-8">
+                            <div class="header-topbar-layout1">
+                                <div class="header-top-left">
+                                    <ul>
+                                        <!-- <li><i class="fas fa-phone-volume"></i>Call : + (123) 6418 8990 </li> -->
+                                        <li><i class="far fa-user"></i><a href="/users/login">Log in / Register</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex justify-content-end">
+                            <div class="header-topbar-layout1">
+                                <div class="header-top-right">
+                                    <ul class="social-icon">
+                                        <!-- <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-pinterest-square"></i></a></li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="rt-sticky-placeholder"></div>
+            <div id="header-menu" class="header-menu menu-layout1">
+                <div class="container">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-lg-2">
+                            <div class="logo-area">
+                                <a href="index.html" class="temp-logo">
+                                    <img src="/static/media/main-logo.png" alt="logo" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 d-flex justify-content-end position-static">
+                            <nav id="dropdown" class="template-main-menu">
+                                <ul>
+                                    <li>
+                                        <a href="/">HOME</a>
+                                    </li>
+                                    <li>
+                                        <a href="/games">GAMES</a>
+                                        
+                                    </li>
+                                    <li>
+                                        <a href="/mods">MODS</a>
+                                    </li>
+                                    <li>
+                                        <a href="/contact">CONTACT</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-lg-2 d-flex justify-content-end">
+                            <div class="header-action-layout1">
+                                <ul>
+                                    <li class="search-btn">
+                                        <a href="#header-search" title="Search">
+                                            <i class="flaticon-search"></i>
+                                        </a>
+                                    </li>
+                                    <!-- <li class="toggle-btn">
+                                        <button class="btn-icon sidebar-toggle">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </button>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% block content %}
+        <!--=====================================-->
+        <!--=        Slider Area Start      	=-->
+        <!--=====================================-->
+        <div class="slider-area slider-layout2 dark-overlay">
+            <div class="bend niceties preview-1">
+                <div id="ensign-nivoslider-1" class="slides">
+                    <img src="/static/media/slider/slide2-1.jpg" alt="slider" title="#slider-direction-1" />
+                    <img src="/static/media/slider/slide2-2.jpg" alt="slider" title="#slider-direction-2" />
+                    <img src="/static/media/slider/slide2-1.jpg" alt="slider" title="#slider-direction-3" />
+                </div>
+                <div id="slider-direction-1" class="t-cn slider-direction">
+                    <div class="slider-content s-tb slide-1">
+                        <div class="text-left title-container s-tb-c">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-9">
+                                        <div class="item-category bg-green">Action</div>
+                                        <div class="item-date"><i class="flaticon-clock"></i> 27 Jan, 2020</div>
+                                        <h1 class="item-title"><a href="single-post1.html">War look the next Forward 2020</a></h1>
+                                        <div class="item-paragraph">Nimply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</div>
+                                        <div class="post-meta-light">
+                                            <ul>
+                                                <li class="post-author">
+                                                    <div class="author-icon bg-blueviolet">
+                                                        <i class="flaticon-user"></i>
+                                                    </div>
+                                                    <div class="author-content">
+                                                        <div class="item-text">Posted by</div>
+                                                        <div class="author-name"><a href="#">Steven Jones</a></div>
+                                                    </div>
+                                                </li>
+                                                <li class="meta-action"><i class="flaticon-heart"></i>2,350</li>
+                                                <li class="meta-action"><i class="flaticon-comment-white-oval-bubble"></i>1,380</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="post-list-layout2">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="slider-direction-2" class="t-cn slider-direction">
+                    <div class="slider-content s-tb slide-2">
+                        <div class="text-left title-container s-tb-c">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-9">
+                                        <div class="item-category bg-green">Action</div>
+                                        <div class="item-date"><i class="flaticon-clock"></i> 27 Jan, 2020</div>
+                                        <h1 class="item-title"><a href="single-post1.html">War look the next Forward 2020</a></h1>
+                                        <div class="item-paragraph">Nimply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</div>
+                                        <div class="post-meta-light">
+                                            <ul>
+                                                <li class="post-author">
+                                                    <div class="author-icon bg-blueviolet">
+                                                        <i class="flaticon-user"></i>
+                                                    </div>
+                                                    <div class="author-content">
+                                                        <div class="item-text">Posted by</div>
+                                                        <div class="author-name"><a href="#">Steven Jones</a></div>
+                                                    </div>
+                                                </li>
+                                                <li class="meta-action"><i class="flaticon-heart"></i>2,350</li>
+                                                <li class="meta-action"><i class="flaticon-comment-white-oval-bubble"></i>1,380</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="post-list-layout2">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="slider-direction-3" class="t-cn slider-direction">
+                    <div class="slider-content s-tb slide-3">
+                        <div class="text-left title-container s-tb-c">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-9">
+                                        <div class="item-category bg-green">Action</div>
+                                        <div class="item-date"><i class="flaticon-clock"></i> 27 Jan, 2020</div>
+                                        <h1 class="item-title"><a href="single-post1.html">War look the next Forward 2020</a></h1>
+                                        <div class="item-paragraph">Nimply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</div>
+                                        <div class="post-meta-light">
+                                            <ul>
+                                                <li class="post-author">
+                                                    <div class="author-icon bg-blueviolet">
+                                                        <i class="flaticon-user"></i>
+                                                    </div>
+                                                    <div class="author-content">
+                                                        <div class="item-text">Posted by</div>
+                                                        <div class="author-name"><a href="#">Steven Jones</a></div>
+                                                    </div>
+                                                </li>
+                                                <li class="meta-action"><i class="flaticon-heart"></i>2,350</li>
+                                                <li class="meta-action"><i class="flaticon-comment-white-oval-bubble"></i>1,380</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="post-list-layout2">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                    <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--=====================================-->
+        <!--=            Post Start           =-->
+        <!--=====================================-->
+        <section class="post-wrap-layout6">
+            <div class="container">
+                <div class="row gutters-40">
+                    <div class="col-xl-3 col-lg-4 col-md-6 order-lg-1">
+                        <div class="widget widget-most-viewed">
+                            <div class="heading-layout1">
+                                <h3 class="heading-title">Most Viewed</h3>
+                            </div>
+                            <div class="grid-post">
+                                <div class="item-img">
+                                    <img src="/static/media/post/post13.jpg" alt="Post">
+                                    <div class="item-tag bg-orange text-white">Scoccer</div>
+                                </div>
+                                <div class="item-content">
+                                    <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                    <h3 class="post-title"><a href="single-post1.html">Top 10 Best Computer games in the Markting agency here 2018 games.</a></h3>
+                                </div>
+                            </div>
+                            <div class="list-post">
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post7.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                    </div>
+                                </div>
+                                <div class="media mb-0 pb-0 border-0">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post8.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-12 col-md-6 order-lg-3">
+                        <div class="heading-layout1">
+                            <h2 class="heading-title">Upcoming Games</h2>
+                        </div>
+                        <div class="widget-upcoming-post">
+                            <div class="post-list-layout2">
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post7.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post8.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post9.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post10.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post8.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">Hitlist ast Computer ar in the market ...</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-8 col-md-12 order-lg-2">
+                        <div class="heading-layout1">
+                            <h2 class="heading-title">Featured Games</h2>
+                            <div class="heading-icon">
+                                <a href="#" class="active"><i class="flaticon-left-arrow-1"></i></a>
+                                <a href="#"><i class="flaticon-right-arrow"></i></a>
+                            </div>
+                        </div>
+                        <div class="row gutters-2">
+                            <div class="col-md-6">
+                                <div class="post-grid-layout3 post-grid11">
+                                    <div class="post-img">
+                                        <img src="/static/media/post/post37.jpg" alt="Games">
+                                        <div class="item-category bg-green">Mission</div>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h3 class="post-title"><a href="single-post1.html">Action dummy teon text ofprinting type setting games 2018</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="post-grid-layout3 post-grid11">
+                                    <div class="post-img">
+                                        <img src="/static/media/post/post38.jpg" alt="Games">
+                                        <div class="item-category bg-dodger-blue">Animation</div>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h3 class="post-title"><a href="single-post1.html">Action dummy teon text ofprinting type setting games 2018</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="post-grid-layout3 post-grid11">
+                                    <div class="post-img">
+                                        <img src="/static/media/post/post39.jpg" alt="Games">
+                                        <div class="item-category bg-blueviolet">Football</div>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h3 class="post-title"><a href="single-post1.html">Action dummy teon text ofprinting type setting games 2018</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="post-grid-layout3 post-grid11">
+                                    <div class="post-img">
+                                        <img src="/static/media/post/post40.jpg" alt="Games">
+                                        <div class="item-category bg-amaranth">Racing</div>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h3 class="post-title"><a href="single-post1.html">Action dummy teon text ofprinting type setting games 2018</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=           Ad Banner Start        	=-->
+        <!--=====================================-->
+        <div class="ad-banner-layout1 margin-bottom-40">
+            <div class="container">
+                <a href="#">
+                    <img src="/static/media/figure/ad6.jpg" alt="Ad">
+                </a>
+            </div>
+        </div>
+        <!--=====================================-->
+        <!--=            Post Start           =-->
+        <!--=====================================-->
+        <section class="margin-bottom-30">
+            <div class="container">
+                <div class="heading-layout1">
+                    <h2 class="heading-title">Most Viewed Games</h2>
+                    <div class="heading-icon">
+                        <a href="#" class="active"><i class="flaticon-left-arrow-1"></i></a>
+                        <a href="#"><i class="flaticon-right-arrow"></i></a>
+                    </div>
+                </div>
+                <div class="row gutters-1">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="post-grid-layout2 post-grid10">
+                            <div class="item-img">
+                                <img src="/static/media/post/post33.jpg" alt="Post">
+                                <div class="item-category bg-amaranth">Racing</div>
+                            </div>
+                            <div class="item-content">
+                                <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                <h3 class="post-title"><a href="single-post1.html">Top 10 Best Computea ety kers in the Markting games here 2018 games.</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="post-grid-layout2 post-grid10">
+                            <div class="item-img">
+                                <img src="/static/media/post/post34.jpg" alt="Post">
+                                <div class="item-category bg-orange">Adventure</div>
+                            </div>
+                            <div class="item-content">
+                                <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                <h3 class="post-title"><a href="single-post1.html">Top 10 Best Computea ety kers in the Markting games here 2018 games.</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="post-grid-layout2 post-grid10">
+                            <div class="item-img">
+                                <img src="/static/media/post/post35.jpg" alt="Post">
+                                <div class="item-category bg-green">Action</div>
+                            </div>
+                            <div class="item-content">
+                                <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                <h3 class="post-title"><a href="single-post1.html">Top 10 Best Computea ety kers in the Markting games here 2018 games.</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="post-grid-layout2 post-grid10">
+                            <div class="item-img">
+                                <img src="/static/media/post/post36.jpg" alt="Post">
+                                <div class="item-category bg-dodger-blue">Animation</div>
+                            </div>
+                            <div class="item-content">
+                                <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                <h3 class="post-title"><a href="single-post1.html">Top 10 Best Computea ety kers in the Markting games here 2018 games.</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=            Post Start           =-->
+        <!--=====================================-->
+        <section class="post-wrap-layout4">
+            <div class="container">
+                <div class="heading-layout1 mb-0">
+                    <h2 class="heading-title">Watch Video Now</h2>
+                    <div class="heading-icon">
+                        <a href="#" class="active"><i class="flaticon-left-arrow-1"></i></a>
+                        <a href="#"><i class="flaticon-right-arrow"></i></a>
+                    </div>
+                </div>
+                <div class="post-bg-wrap">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="post-grid-layout1 post-grid9">
+                                <div class="post-img">
+                                    <img src="/static/media/post/post32.jpg" alt="Post">
+                                    <div class="popup-video">
+                                        <a class="play-btn popup-youtube" href="http://www.youtube.com/watch?v=1iIZeIy7TqM">
+                                            <i class="fas fa-play"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <div class="post-category bg-dodger-blue">Animation</div>
+                                    <h3 class="post-title"><a href="single-post1.html">Just then her head struck againste now mored hurried.</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="post-list-layout1 post-list5">
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post2.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">The Top Best Computer Speakers Market</a></h4>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post3.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 25 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">The Top Best Computer Speakers Market</a></h4>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post4.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 20 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">The Top Best Computer Speakers Market</a></h4>
+                                    </div>
+                                </div>
+                                <div class="media">
+                                    <div class="item-img">
+                                        <img src="/static/media/post/post3.jpg" alt="Post">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 25 June, 2019</div>
+                                        <h4 class="post-title"><a href="single-post1.html">The Top Best Computer Speakers Market</a></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=            Post Start           =-->
+        <!--=====================================-->
+        <section class="post-wrap-layout3">
+            <div class="container">
+                <div class="row gutters-40">
+                    <div class="col-lg-9">
+                        <div class="heading-layout1">
+                            <h2 class="heading-title">Weekly Top Games</h2>
+                            <div class="heading-icon">
+                                <a href="#" class="active"><i class="flaticon-left-arrow-1"></i></a>
+                                <a href="#"><i class="flaticon-right-arrow"></i></a>
+                            </div>
+                        </div>
+                        <div class="row gutters-20">
+                            <div class="col-lg-5">
+                                <div class="post-grid-layout3 post-grid7">
+                                    <div class="post-img">
+                                        <img src="/static/media/post/post29.jpg" alt="Games">
+                                        <div class="item-category bg-green">Mission</div>
+                                    </div>
+                                    <div class="post-content">
+                                        <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                        <h3 class="post-title"><a href="single-post1.html">Top 10 Best Computer games in the Markting here.</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="row gutters-20">
+                                    <div class="col-md-6">
+                                        <div class="post-grid-layout2 post-grid8">
+                                            <div class="item-img">
+                                                <img src="/static/media/post/post30.jpg" alt="Post">
+                                            </div>
+                                            <div class="item-content">
+                                                <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                <h3 class="post-title"><a href="single-post1.html">Computer n the market simply dueyprinting industry.</a></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="post-grid-layout2 post-grid8">
+                                            <div class="item-img">
+                                                <img src="/static/media/post/post31.jpg" alt="Post">
+                                            </div>
+                                            <div class="item-content">
+                                                <div class="post-date"><i class="flaticon-clock"></i> 27 June, 2019</div>
+                                                <h3 class="post-title"><a href="single-post1.html">Computer n the market simply dueyprinting industry.</a></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 sidebar-widget">
+                        <div class="widget widget-ad">
+                            <a href="#">
+                                <img src="/static/media/figure/ad5.jpg" alt="Ad">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=            Social Start           =-->
+        <!--=====================================-->
+        <!-- <section class="social-box-wrap">
+            <div class="container-fluid full-width">
+                <div class="row no-gutters">
+                    <div class="col-lg-2 col-sm-4 col-6">
+                        <div class="social-box-img">
+                            <a href="#"><img src="/static/media/social/social1.png" alt="Social"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-6">
+                        <div class="social-box-img">
+                            <a href="#"><img src="/static/media/social/social2.png" alt="Social"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-6">
+                        <div class="social-box-img">
+                            <a href="#"><img src="/static/media/social/social3.png" alt="Social"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-6">
+                        <div class="social-box-img">
+                            <a href="#"><img src="/static/media/social/social4.png" alt="Social"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-6">
+                        <div class="social-box-img">
+                            <a href="#"><img src="/static/media/social/social5.png" alt="Social"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-6">
+                        <div class="social-box-img">
+                            <a href="#"><img src="/static/media/social/social6.png" alt="Social"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        {% endblock %}
+        <!--=====================================-->
+        <!--=            Footer Start           =-->
+        <!--=====================================-->
+        <footer class="footer-wrap">
+            <div class="footer-top-wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="footer-box">
+                                <h3 class="footer-box-title">
+                                    Useful Links
+                                </h3>
+                                <div class="footer-link">
+                                    <ul>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/games">Games</a></li>
+                                        <li><a href="/games">Mods</a></li>
+                                        
+                                    </ul>
+                                    <ul>
+                                    
+                                        <li><a href="/contact">Contacts</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="footer-box text-lg-center">
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="/static/media/logo.png" alt="logo"></a>
+                                </div>
+                                <p>We are an environmentally friendly renewable energy company offering eco products, & solutions.</p>
+                                <!-- <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Newsltter Sign Up!">
+                                    <div class="input-group-append">
+                                        <button class="item-btn" type="button"><i class="fas fa-angle-right"></i></button>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- <div class="footer-box">
+                                <h3 class="footer-box-title">
+                                    Follow Us On
+                                </h3>
+                                <div class="footer-social">
+                                    <ul class="social-icon">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-pinterest-square"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-github-alt"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-skype"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-dribbble-square"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-wrap">
+                <div class="container">
+                    <div class="footer-copyright">Copyright@2020 gamxo. All Rights Reserved</div>
+                </div>
+            </div>
+        </footer>
+        <!--=====================================-->
+        <!--=            Sidebar Start          =-->
+        <!--=====================================-->
+        <!-- <div class="sidebar-nav-menu" id="sidebar-nav">
+            <button class="close-btn sidebar-toggle"><i class="fas fa-times"></i></button>
+            <div class="sidebar-logo">
+                <a href="/">
+                    <img src="//static/media/logo.png" alt="Side Logo">
+                </a>
+            </div>
+            <ul class="menu-list">
+                <li><a href="/">Home</a></li>
+                <li><a href="/category1.html">Games</a></li>
+                <li><a href="#">Video</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <ul class="item-social">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+            </ul>
+        </div> -->
+
+        <!--=====================================-->
+        <!--=      Header Search Start          =-->
+        <!--=====================================-->
+        <div id="header-search" class="header-search">
+            <button type="button" class="close">×</button>
+            <form class="header-search-form">
+                <input type="search" value="" placeholder="Search here..." />
+                <button type="submit" class="search-btn">
+                    <i class="flaticon-search"></i>
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <!-- Dependencies Js -->
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/jquery.nivo.slider.js"></script>
+    <script src="/static/home.js"></script>
+    <script src="/static/owl.carousel.min.js"></script>
+    <script src="/static/jquery.magnific-popup.min.js"></script>
+    <script src="/static/sal.js"></script>
+    <script src="/static/select2.min.js"></script>
+    <script src="/static/isotope.pkgd.min.js"></script>
+    <script src="/static/imagesloaded.pkgd.min.js"></script>
+    <script src="/static/validator.min.js"></script>
+    <script src="/static/jquery.meanmenu.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtmXSwv4YmAKtcZyyad9W7D4AC08z0Rb4"></script>
+
+    <!-- Custom Js -->
+    <script src="/static/app.js"></script>
+
+</body>
+
+</html>

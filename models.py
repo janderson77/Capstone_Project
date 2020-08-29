@@ -1,0 +1,121 @@
+from datetime import datetime
+
+from flask_bcrypt import Bcrypt
+from flask_sqlalchemy import SQLAlchemy
+
+bcrypt = Bcrypt()
+db = SQLAlchemy()
+
+
+def connect_db(app):
+    db.app = app
+    db.init_app(app)
+
+
+class User(db.Model):
+    """Users in the system"""
+
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    username = db.Column(db.Text, nullable=False, unique=True)
+
+    email_address = db.Column(db.Text, nullable=False, unique=True)
+
+    password = db.Column(db.Text, nullable=False, unique=True)
+
+    profile_img = db.Column(
+        db.Text, default='/static/images/default_profile.jpg')
+
+    def __repr__(self):
+        return f"<User #{self.id}: {self.username}, {self.email}>"
+
+    @classmethod
+    def signup(cls, username, email, password, profile_img):
+        """Sign up user.
+
+        Hashes password and adds user to system.
+        """
+
+        hashed_pwd = bcrypt.generate_password_hash(password).decode('UTF-8')
+
+        user = User(
+            username=username,
+            email=email,
+            password=hashed_pwd,
+            profile_img=profile_img,
+        )
+
+        db.session.add(user)
+        return user
+
+    @classmethod
+    def authenticate(cls, username, password):
+        """Find user with `username` and `password`.
+
+        This is a class method (call it on the class, not an individual user.)
+        It searches for a user whose password hash matches this password
+        and, if it finds such a user, returns that user object.
+
+        If can't find matching user (or if password is wrong), returns False.
+        """
+
+        user = cls.query.filter_by(username=username).first()
+
+        if user:
+            is_auth = bcrypt.check_password_hash(user.password, password)
+            if is_auth:
+                return user
+
+        return False
+
+
+class Mod(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    mod_name = db.Column(db.Text, nullable=False, unique=True)
+
+    game_id = db.relationship('Game', backref='mod')
+
+    upload_user_id = db.relationship('User', backref='mod')
+
+    posted_at = db.Column(db.DateTime, nullable=False,
+                          default=datetime.utcnow())
+
+    description = db.Column(db.Text)
+
+    requirements = db.Column(db.Text)
+
+    installation = db.Column(db.Text)
+
+    main_mod_image = db.Column(
+        db.Text, nullable=False, default='/static/images/default_mod_image.jpg')
+
+    sub_images = db.relationship('SubImages', backref='mod')
+
+    def __repr__(self):
+        return f"<Mod #{self.id}: {self.mod_name}, uploaded by: {self.upload_user_id}>"
+
+
+class SubImages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    image_url = db.Column(db.Text, nullable=False)
+
+
+class Games(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    game_title = db.Column(db.Text, nullable=False, unique=True)
+
+    game_developer = db.Column(db.Text)
+
+    game_genre = db.Column(db.Text,)
+
+    release_year = db.Column(db.Text)
+
+    description = db.Column(db.Text)
+
+    def __repr__(self):
+        return f"<Game #{self.id}: {self.game_title}, made by: {self.game_developer}, released on {self.release_year}>"
