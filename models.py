@@ -21,12 +21,14 @@ class User(db.Model):
 
     username = db.Column(db.Text, nullable=False, unique=True)
 
-    email_address = db.Column(db.Text, nullable=False, unique=True)
+    email = db.Column(db.Text, nullable=False, unique=True)
 
     password = db.Column(db.Text, nullable=False, unique=True)
 
     profile_img = db.Column(
         db.Text, default='/static/images/default_profile.jpg')
+
+    mod = db.relationship('Mod')
 
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"
@@ -72,13 +74,22 @@ class User(db.Model):
 
 
 class Mod(db.Model):
+
+    __tablename__ = 'mods'
+
     id = db.Column(db.Integer, primary_key=True)
 
-    mod_name = db.Column(db.Text, nullable=False, unique=True)
+    drive_id = db.Column(db.Text, nullable=False)
 
-    game_id = db.relationship('Game', backref='mod')
+    mod_name = db.Column(db.Text, nullable=False)
 
-    upload_user_id = db.relationship('User', backref='mod')
+    game_id = db.Column(db.Integer, db.ForeignKey('games.id'))
+
+    game = db.relationship('Game')
+
+    upload_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    user = db.relationship('User')
 
     posted_at = db.Column(db.DateTime, nullable=False,
                           default=datetime.utcnow())
@@ -92,19 +103,29 @@ class Mod(db.Model):
     main_mod_image = db.Column(
         db.Text, nullable=False, default='/static/images/default_mod_image.jpg')
 
-    sub_images = db.relationship('SubImages', backref='mod')
+    sub_images = db.relationship('SubImages')
 
     def __repr__(self):
         return f"<Mod #{self.id}: {self.mod_name}, uploaded by: {self.upload_user_id}>"
 
 
 class SubImages(db.Model):
+
+    __tablename__ = 'subimages'
+
     id = db.Column(db.Integer, primary_key=True)
+
+    mod_id = db.Column(db.Integer, db.ForeignKey('mods.id'))
+
+    mod = db.relationship('Mod')
 
     image_url = db.Column(db.Text, nullable=False)
 
 
-class Games(db.Model):
+class Game(db.Model):
+
+    __tablename__ = 'games'
+
     id = db.Column(db.Integer, primary_key=True)
 
     game_title = db.Column(db.Text, nullable=False, unique=True)
@@ -116,6 +137,8 @@ class Games(db.Model):
     release_year = db.Column(db.Text)
 
     description = db.Column(db.Text)
+
+    mod = db.relationship('Mod')
 
     def __repr__(self):
         return f"<Game #{self.id}: {self.game_title}, made by: {self.game_developer}, released on {self.release_year}>"

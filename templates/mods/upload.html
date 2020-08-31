@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload{% endblock %}
+{% block content %}
+        <!--=====================================-->
+        <!--=           Category Start        	=-->
+        <!--=====================================-->
+        <section class="inner-page-banner bg-common" data-bg-image="media/figure/banner1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumbs-area">
+                            <h1>Upload</h1>
+                            <ul>
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>Upload</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=        Login Form Start        	=-->
+        <!--=====================================-->
+        <section class="error-section">
+            <div class="container d-flex flex-column align-items-center justify-content-center">
+                <div class="col-6 d-flex flex-column">
+                    <p>Upload Your Mod As An Archive Only</p>
+                    <form method="POST" id="mod-form" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                    
+                        {% for field in form if field.widget.input_type != 'hidden' %}
+                          {% for error in field.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                          {% endfor %}
+                          {{ field(placeholder=field.label.text, class="form-control") }}
+                        {% endfor %}
+                        <div class="d-flex flex-column align-items-center"><div>
+                            <button class="item-btn">Submit</button>
+                        </div></div>
+                        
+                      </form>
+                </div>
+            </div>
+        </section>
+        
+{% endblock %}

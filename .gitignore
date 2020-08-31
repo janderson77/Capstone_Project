@@ -16,4 +16,10 @@ token.pickle
 
 venv/
 
-.gitignore
+auth.py
+
+token_drive_v3.pickle
+
+storage.json
+
+client_secret.json
