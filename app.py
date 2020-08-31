@@ -155,13 +155,6 @@ def show_mod_upload_page():
                             for g in Game.query.all()]
 
     if form.validate_on_submit():
-
-        # print(request.method)
-        # print(form.validate_on_submit())
-        # print(form.modfile.data.filename)
-        # print(form.modfile.data)
-        # print(request.files)
-
         if 'modfile' not in request.files:
             flash('No file part')
             return redirect('/games/upload')
