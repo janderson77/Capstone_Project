@@ -6,19 +6,32 @@ from sqlalchemy.exc import IntegrityError
 from forms import UserAddForm, LoginForm, UploadModForm
 from models import db, connect_db, User, Mod, Game
 from werkzeug.utils import secure_filename
-from Google import Create_Service
-from googleapiclient.http import MediaFileUpload, DEFAULT_CHUNK_SIZE
+from secrets import secret_access_key, access_key
+from pathlib import Path, PurePath
+from botocore.exceptions import ClientError
 
-CLIENT_SECRET_FILE = 'client_secret.json'
-API_NAME = 'drive'
-API_VERSION = 'v3'
-SCOPES = ['https://www.googleapis.com/auth/drive.file']
+import boto3
+import io
+import shutil
+import pickle
+import sys
+import tempfile
+import uuid
 
-service = Create_Service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
+client = boto3.client('s3',
+                      aws_access_key_id=access_key,
+                      aws_secret_access_key=secret_access_key)
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+ALLOWED_ARCHIVE_EXTENSIONS = {'7z', 'zip', 'zipx', 'rar'}
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 CURR_USER_KEY = "curr_user"
+
+MOD_BASE_ID = 'https://mod-page.s3-us-west-1.amazonaws.com/mods/'
+
+IMG_BASE = 'https://mod-page.s3-us-west-1.amazonaws.com/mods/'
 
 app = Flask(__name__)
 
@@ -29,6 +42,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
+
+app.config['UPLOAD_FOLDER'] = Path('uploads')
+
 toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
@@ -139,65 +155,208 @@ def show_contact_page():
     return render_template('contact.html')
 
 # @app.route('/games/<int: game_id>/mods')
-# @app.route('/games/<int: game_id>/mods/<int: mod_id>')
+
+
+@app.route('/games/<int:game_id>/mods/<int:mod_id>', methods=["GET", "POST"])
+def show_mod_detials_page(game_id, mod_id):
+    """Renders the details page for a mod including download link and images"""
+
+    res = Mod.query.filter_by(id=mod_id).all()
+
+    user = res[0].user
+    mod = res[0]
+
+    if request.method == 'POST':
+        page_token = None
+        while True:
+            q = f"fileid = '{mod.drive_id}'"
+            response = service.files().list(f"fileid").execute()
+            for file in response.get('files', []):
+                # Process change
+                print('Found file: %s (%s)' %
+                      (file.get('name'), file.get('id')))
+            page_token = response.get('nextPageToken', None)
+            if page_token is None:
+                break
+
+        file_id = mod.drive_id
+        req = service.files().get_media(fileId=file_id)
+        fh = io.FileIO('alsjdf', mode='w')
+        downloader = MediaIoBaseDownload(fh, req)
+        done = False
+        while done is False:
+            status, done = downloader.next_chunk()
+            print("Download %d%%." % int(status.progress() * 100))
+
+    img_link = f"{IMG_BASE}{mod.main_mod_image}"
+    modlink = f"{MOD_BASE_ID}{mod.file_id}"
+    return render_template('/mods/mod_show.html', user=user, mod=mod, img_link=img_link, modlink=modlink)
+
 # @app.route('/games/<int: game_id>/mods/<int: mod_id>/edit')
 
 
 def allowed_file(filename):
+    """Checks that the photos for a mod are of the allowed types"""
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+def allowed_archive(filename):
+    """Checks that the uploaded mod file is an archive, and is of an allowed type"""
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_ARCHIVE_EXTENSIONS
+
+
 @app.route('/games/upload', methods=["GET", "POST"])
 def show_mod_upload_page():
+    """Renders the mod upoad page and handles the upload of mod files"""
     form = UploadModForm()
     form.modgame.choices = [(g.id, g.game_title)
                             for g in Game.query.all()]
 
     if form.validate_on_submit():
-        if 'modfile' not in request.files:
-            flash('No file part')
-            return redirect('/games/upload')
-        upfile = request.files['modfile']
-        if upfile.filename == '':
-            flash('no selected file')
-            return redirect('/games/upload')
-        if upfile and allowed_file(upfile.filename):
-            filename = secure_filename(upfile.filename)
-            upfile.save(os.path.join('/tmp', filename))
 
-            metadata = {'name': filename}
+        res = upload_mod_file(request)
+        res2 = upload_mod_image(request)
 
-            media = MediaFileUpload('/tmp/{0}'.format(filename), mimetype=upfile.mimetype,
-                                    chunksize=DEFAULT_CHUNK_SIZE, resumable=False)
+        # Creates a new instance of the Mod class
+        newmod = Mod(
+            mod_name=form.data['modname'],
+            game_id=form.data['modgame'],
+            upload_user_id=g.user.id,
+            description=form.data['description'],
+            requirements=form.data['requirements'],
+            installation=form.data['installation'],
+            file_id=res['id'],
+            main_mod_image=res2['id']
+        )
 
-            res = service.files().create(body=metadata, media_body=media).execute()
+        db.session.add(newmod)
+        db.session.commit()
 
-            newmod = Mod(
-                drive_id=res['id'],
-                mod_name=form.data['modname'],
-                game_id=form.data['modgame'],
-                upload_user_id=g.user.id,
-                description=form.data['description'],
-                requirements=form.data['requirements'],
-                installation=form.data['installation']
-            )
+        # queries the new mod so that the user can be redirected to the new mod page
+        modinfo = Mod.query.filter_by(file_id=res['id']).all()
+        new_mod_game_id = modinfo[0].game_id
+        new_mod_id = modinfo[0].id
 
-            db.session.add(newmod)
-            db.session.commit()
+        return redirect(f'/games/{new_mod_game_id}/mods/{new_mod_id}')
 
-            modinfo = Mod.query.filter_by(drive_id=res['id']).all()
-            new_mod_game_id = modinfo[0].game_id
-            new_mod_id = modinfo[0].id
-            # import pdb
-            # pdb.set_trace()
-            return redirect(f'/games/{new_mod_game_id}/mods/{new_mod_id}')
-        return redirect('/')
     return render_template('mods/upload.html', form=form)
 
 # @app.route('/games/<int: game_id>/mods/edit')
 # @app.route('/games/<int: game_id>/mods/delete')
 # @app.route('/games/<int: game_id>/mods/search')
+
+
+##############################################################################
+########################    Necessary Functions   ############################
+##############################################################################
+
+def upload_mod_file(request):
+    """Processes a mod archive for uploading and uploads it"""
+    if 'modfile' not in request.files:
+        # Checks that there is a file to be uploaded
+        flash('No file part')
+        return redirect('/games/upload')
+    files = request.files['modfile']
+    if files.filename == '':
+        # Checks that the file has a name
+        flash('no selected file')
+        return redirect('/games/upload')
+    if files and allowed_archive(files.filename):
+        # Checks that the file is in the list of allowed file types
+
+        filename = secure_filename(files.filename)
+        file_ext = Path(files.filename).suffix.lower()
+        # Alters the file name so it's not malicious
+
+        filename = str(uuid.uuid1().int)
+        filename = f"{filename}{file_ext}"
+        files.filename = filename
+        # Changes the file name to a randomly generated number to be used as the unique ID
+
+        cwd = Path.cwd()
+        f = PurePath(cwd, 'uploads')
+        path = Path(f)
+        # Finds the uploads file path
+
+        p_obj_path = PurePath(path, filename)
+        obj_path = Path(p_obj_path)
+        # Sets the path for the file to be saved at
+
+        new_file = files.save(obj_path)
+
+        if obj_path.is_file():
+            upload_file_bucket = 'mod-page'
+            upload_file_key = 'mods/' + filename
+            try:
+                file_obj = open(obj_path, 'rb')
+
+                res = client.upload_fileobj(
+                    file_obj, upload_file_bucket, upload_file_key)
+                file_obj.close()
+            except ClientError as e:
+                errors = logging.error(e)
+                return errors
+
+            mod_file = {'id': filename}
+            Path.unlink(obj_path)
+            return mod_file
+        else:
+            flash('Something Went Wrong')
+            return redirect('/games/upload')
+
+
+def upload_mod_image(request):
+    """Processes a mod image for uploading and uploads it"""
+    if 'modimage' not in request.files:
+        # Checks that there is a file to be uploaded
+        flash('No file part')
+        return redirect('/games/upload')
+    files = request.files['modimage']
+    if files.filename == '':
+        # Checks that the file has a name
+        flash('no selected file')
+        return redirect('/games/upload')
+    if files and allowed_file(files.filename):
+        # Checks that the file is in the list of allowed file types
+        # files = request.files['modimage']
+        file_ext = Path(files.filename).suffix.lower()
+        # Alters the file name so it's not malicious
+
+        filename = str(uuid.uuid1().int)
+        filename = f"{filename}{file_ext}"
+        files.filename = filename
+        # Changes the file name to a randomly generated number to be used as the unique ID
+
+        cwd = Path.cwd()
+        f = PurePath(cwd, 'uploads')
+        path = Path(f)
+        # Finds the uploads file path
+
+        p_obj_path = PurePath(path, filename)
+        obj_path = Path(p_obj_path)
+        # Sets the path for the file to be saved at
+
+        new_file = files.save(obj_path)
+
+        if obj_path.is_file():
+            upload_file_bucket = 'mod-page'
+            upload_file_key = 'mods/' + filename
+            try:
+                file_obj = open(obj_path, 'rb')
+
+                res = client.upload_fileobj(
+                    file_obj, upload_file_bucket, upload_file_key)
+                file_obj.close()
+            except ClientError as e:
+                errors = logging.error(e)
+                return errors
+            mod_image = {'id': filename}
+            Path.unlink(obj_path)
+            return mod_image
+
+        return res
 
 
 @ app.errorhandler(404)

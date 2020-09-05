@@ -21,9 +21,11 @@ class LoginForm(FlaskForm):
 
 
 class UploadModForm(FlaskForm):
-    modname = StringField('Mod Name', validators=[DataRequired()])
+    modname = StringField('The name of your Mod', validators=[DataRequired()])
     modgame = SelectField('The Game the mod is for')
     description = StringField('(Optional) Description for your Mod')
     requirements = StringField('(Optional) Requirements for your Mod')
-    installation = StringField('(Optional) Installation Instructions')
-    modfile = FileField('Mod File')
+    installation = StringField(
+        '(Optional) Installation Instructions for your Mod')
+    modfile = FileField('Mod File Archive (7z, zip, zipx, rar Only)')
+    modimage = FileField('Main Mod Image(png, jpg, jpeg, gif)')

@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}{{mod.mod_name}}{% endblock %}
+{% block content %}
+        <!--=====================================-->
+        <!--=           Inner Banner Start      =-->
+        <!--=====================================-->
+        <section class="inner-page-banner bg-common" data-bg-image="media/figure/banner1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumbs-area">
+                            <h1>{{mod.mod_name}}</h1>
+                            <ul>
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>{{mod.mod_name}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=         Single Post Start        	=-->
+        <!--=====================================-->
+        <section class="inner-section">
+            <div class="container">
+                <div class="single-post-layout2">
+                    <div class="post-details">
+                        <div class="post-img">
+                            <img src="{{img_link}}" alt="Post">
+                        </div>
+                        <div class="post-content">
+                            <h2 class="post-title">{{mod.mod_name}}</h2>
+                            <input type="hidden" id="hdnSession" data-value="{{mod.drive_id}}"></input>
+                            <div class="entry-meta">
+                                <div class="row gutters-40 align-items-center">
+                                    <div class="col-lg-5 d-flex justify-content-lg-end justify-content-center">
+                                        <div class="post-meta-dark">
+                                            <ul>
+                                                <li class="post-date"><i class="flaticon-clock"></i>Posted At: {{mod.posted_at}}</li>
+                                                <li class="post-author text-left">
+                                                    <div class="author-icon bg-green">
+                                                        <i class="flaticon-user"></i>
+                                                    </div>
+                                                    <div class="author-content">
+                                                        <div class="item-text">Posted by</div>
+                                                        <div class="author-name"><a href="/users/{{user.id}}">{{user.username}}</a></div>
+                                                    </div>
+                                                <!-- Plans to implemant likes and comments later -->
+                                                <!-- </li>
+                                                <li class="meta-action"><i class="flaticon-heart"></i>2,350</li>
+                                                <li class="meta-action"><i class="flaticon-comment-white-oval-bubble"></i>1,380</li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 d-flex justify-content-end align-items-center">
+                                        <div class="">
+                                            <ul>
+                                                
+                                                {% if g.user %}
+                                                <li>
+                                                    <a class="btn btn-outline-dark" href="{{modlink}}" id="mod-download" download="{{mod.mod_name}}"><i class="fas fa-download" ></i> Download</a>
+                                                </li>
+                                                {% else %}
+                                                <li>
+                                                    <i class="far fa-stop-circle text-danger"></i>You must be logged in to download this file.
+                                                </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if mod.description  %}
+                            <h3 class="mod-info display-5">Description</h3>
+                            <hr>
+                            <p>
+                                {{mod.description}}
+                            </p>
+                            {% else %}
+                            <h3 class="mod-info display-5">Description</h3>
+                            <hr>
+                            <p>
+                                Nothing here...                              
+                            </p>
+                            {% endif %}
+
+
+                            {% if mod.installation  %}
+                            <h3 class="mod-info display-5">Installation</h3>
+                            <hr>
+                            <p>
+                                {{mod.installation}}
+                            </p>
+                            {% else %}
+                            <h3 class="mod-info display-5">Installation</h3>
+                            <hr>
+                            <p>
+                                Nothing Here...
+                            </p>
+                            {% endif %}
+
+                            {% if mod.requirements  %}
+                            <h3 class="mod-info display-5">Requirements</h3>
+                            <hr>
+                            <p>
+                                {{mod.requirements}}
+                                
+                            </p>
+                            {% else %}
+                            <h3 class="mod-info display-5">Requirements</h3>
+                            <hr>
+                            <p>
+                                Nothing Here...
+                            </p>
+                            {% endif %}
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    
+                </section>
+
+{% endblock %}

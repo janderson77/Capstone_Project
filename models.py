@@ -79,8 +79,6 @@ class Mod(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    drive_id = db.Column(db.Text, nullable=False)
-
     mod_name = db.Column(db.Text, nullable=False)
 
     game_id = db.Column(db.Integer, db.ForeignKey('games.id'))
@@ -99,6 +97,8 @@ class Mod(db.Model):
     requirements = db.Column(db.Text)
 
     installation = db.Column(db.Text)
+
+    file_id = db.Column(db.Text, nullable=False)
 
     main_mod_image = db.Column(
         db.Text, nullable=False, default='/static/images/default_mod_image.jpg')
