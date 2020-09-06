@@ -6263,15 +6263,6 @@ hr {
 	font-family: "Rubik", sans-serif;
 }
 
-.carousel-caption p {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	max-width: 80%;
-	color: black;
-	font-family: "Rubik", sans-serif;
-}
-
 .featured-mods-content {
 	position: relative;
 	left: 0;
