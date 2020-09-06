@@ -407,4 +407,14 @@
 			}
 		});
 	});
+	$('#myCarousel').carousel({
+		interval: 3000
+	});
+
+	$('.prev-slide').click(function() {
+		$('#mod-carousel').carousel('prev');
+	});
+	$('.next-slide').click(function() {
+		$('#mod-carousel').carousel('next');
+	});
 })(jQuery);

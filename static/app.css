@@ -1729,7 +1729,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 	-webkit-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
 	text-align: center;
-	background-image: url("../../media/figure/side-menu.jpg");
+	background-image: url("media/figure/side-menu.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -2424,7 +2424,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 
 /*------------------- 4.8 Preloader -------------------*/
 #preloader {
-	background: #ffffff url("../../media/preloader.gif") no-repeat scroll center center;
+	background: #ffffff url("media/preloader.gif") no-repeat scroll center center;
 	height: 100%;
 	left: 0;
 	overflow: visible;
@@ -3428,7 +3428,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 }
 
 .post-wrap-layout7 {
-	background-image: url("../../media/post/post-bg3.jpg");
+	background-image: url("media/post/post-bg3.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -3459,7 +3459,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 
 .post-video-slider {
 	padding: 2.1875rem 0 2.5rem;
-	background-image: url("../../media/post/post-bg2.jpg");
+	background-image: url("media/post/post-bg2.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -3490,7 +3490,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 
 .post-bg-wrap {
 	padding: 1.875rem;
-	background-image: url("../../media/post/post-bg.jpg");
+	background-image: url("media/post/post-bg.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -5400,7 +5400,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 }
 
 .single-post-layout1 .post-details blockquote:before {
-	content: url("../../media/figure/quote.png");
+	content: url("media/figure/quote.png");
 	position: absolute;
 	left: 3.25rem;
 	top: 2.5rem;
@@ -5755,7 +5755,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 }
 
 .single-post-layout2 .post-details blockquote:before {
-	content: url("../../media/figure/quote.png");
+	content: url("media/figure/quote.png");
 	position: absolute;
 	left: 3.25rem;
 	top: 2.5rem;
@@ -6127,7 +6127,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 
 /*------------------- 6.3 Misc -------------------*/
 .box-layout-wrap {
-	background-image: url("../../media/figure/bg-img.png");
+	background-image: url("media/figure/bg-img.png");
 	background-color: #f2f2f2;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -6217,4 +6217,63 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 hr {
 	margin-top: 0.5rem;
 	margin-bottom: 1rem;
+}
+
+.carousel-inner {
+	max-height: 710px;
+	overflow: hidden;
+}
+
+.carousel-inner .carousel-item img {
+	min-height: 710px;
+	width: auto;
+	margin: auto;
+}
+
+.feat_mods {
+	height: 300px;
+	width: 310px;
+	max-height: 300px;
+	max-width: 310px;
+	overflow: hidden;
+}
+
+.feat_mods img {
+	min-height: 300px;
+	width: auto;
+}
+
+#mod-carousel {
+	background-color: #a4a7ab;
+	background-color: #111111;
+}
+
+.carousel-caption {
+	/* position: relative; */
+	left: 1;
+	top: 0;
+}
+
+.carousel-caption h5 {
+	color: white;
+	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
+	font-size: 3rem;
+	font-family: "Rubik", sans-serif;
+}
+
+.carousel-caption p {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 80%;
+	color: black;
+	font-family: "Rubik", sans-serif;
+}
+
+.featured-mods-content {
+	position: relative;
+	left: 0;
+	top: 50%;
 }

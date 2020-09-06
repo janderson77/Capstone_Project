@@ -123,12 +123,23 @@ class SubImages(db.Model):
 
 
 class Game(db.Model):
+    """
+        File extenstion for the game image is to be left off by default to allow for dinamic image sizes to be used.
 
+        Image naming must follow the convention of "game_name" with the varying sizes having an underscore before the size declaration, i.e. "_sm"
+
+        When calling the image in a template, do not forget to include the extension (jpg should be used) after the closing curly braces
+
+        Note: This rule does not apply to the Mods class
+    """
     __tablename__ = 'games'
 
     id = db.Column(db.Integer, primary_key=True)
 
     game_title = db.Column(db.Text, nullable=False, unique=True)
+
+    game_image = db.Column(db.Text, nullable=False,
+                           default='/static/images/default_mod_image')
 
     game_developer = db.Column(db.Text)
 

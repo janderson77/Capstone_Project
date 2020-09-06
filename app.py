@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, flash, redirect, session, g, 
 import requests
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.sql import func
+from sqlalchemy import desc, asc
 from forms import UserAddForm, LoginForm, UploadModForm
 from models import db, connect_db, User, Mod, Game
 from werkzeug.utils import secure_filename
@@ -10,6 +12,7 @@ from secrets import secret_access_key, access_key
 from pathlib import Path, PurePath
 from botocore.exceptions import ClientError
 
+import random
 import boto3
 import io
 import shutil
@@ -76,12 +79,7 @@ def do_logout():
 
 @app.route('/')
 def show_home_page():
-    if g.user:
-
-        return render_template('index.html')
-
-    else:
-        return render_template('index-anon.html')
+    return redirect('/games')
 
 
 @app.route('/users/register', methods=['GET', 'POST'])
@@ -144,17 +142,42 @@ def logout():
     return redirect("/login")
 
 
-@app.route('/games')
-def show_games_list():
-    return render_template('games/games.html')
-
-
 @app.route('/contact')
 def show_contact_page():
     """Renders the contact page"""
     return render_template('contact.html')
 
-# @app.route('/games/<int: game_id>/mods')
+#########################################################################################
+# Games Routes
+#########################################################################################
+
+
+@app.route('/games')
+def show_games_list():
+    """Show the list of games currently supported for mods"""
+    games = Game.query.all()
+
+    return render_template('games/games.html', games=games)
+
+
+@app.route('/games/<int:game_id>/mods')
+def show_game_mods(game_id):
+    """Renders the main mods page for the selected game"""
+    mods = Mod.query.filter_by(game_id=game_id).group_by(
+        Mod.posted_at, Mod.id).all()
+
+    rand_mods = Mod.query.order_by(func.random()).limit(5).all()
+    # Returns 5 randomly ordered mods for the random mods section
+
+    feat_mods = Mod.query.order_by(func.random()).limit(4).all()
+    # Gets 4 random mods. Will be changed later to get by most likes when that's implemented
+
+    rec_mods = Mod.query.order_by(desc('id')).limit(3).all()
+    # Gets most recent mods by querying the highest 3 mod ids
+
+    # import pdb
+    # pdb.set_trace()
+    return render_template('games/index.html', mods=mods, img_link=IMG_BASE, rand_mods=rand_mods, rec_mods=rec_mods, feat_mods=feat_mods, game_id=game_id)
 
 
 @app.route('/games/<int:game_id>/mods/<int:mod_id>', methods=["GET", "POST"])
@@ -166,31 +189,9 @@ def show_mod_detials_page(game_id, mod_id):
     user = res[0].user
     mod = res[0]
 
-    if request.method == 'POST':
-        page_token = None
-        while True:
-            q = f"fileid = '{mod.drive_id}'"
-            response = service.files().list(f"fileid").execute()
-            for file in response.get('files', []):
-                # Process change
-                print('Found file: %s (%s)' %
-                      (file.get('name'), file.get('id')))
-            page_token = response.get('nextPageToken', None)
-            if page_token is None:
-                break
-
-        file_id = mod.drive_id
-        req = service.files().get_media(fileId=file_id)
-        fh = io.FileIO('alsjdf', mode='w')
-        downloader = MediaIoBaseDownload(fh, req)
-        done = False
-        while done is False:
-            status, done = downloader.next_chunk()
-            print("Download %d%%." % int(status.progress() * 100))
-
     img_link = f"{IMG_BASE}{mod.main_mod_image}"
     modlink = f"{MOD_BASE_ID}{mod.file_id}"
-    return render_template('/mods/mod_show.html', user=user, mod=mod, img_link=img_link, modlink=modlink)
+    return render_template('/mods/mod_show.html', user=user, mod=mod, img_link=img_link, modlink=modlink, game_id=game_id)
 
 # @app.route('/games/<int: game_id>/mods/<int: mod_id>/edit')
 

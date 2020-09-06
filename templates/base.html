@@ -103,7 +103,11 @@
                                         
                                     </li>
                                     <li>
-                                        <a href="/mods">MODS</a>
+                                        {% if game_id%}
+                                        <a href="/games/{{game_id}}/mods">MODS</a>
+                                        {% else %}
+                                        <a href="/games">MODS</a>
+                                        {% endif %}
                                     </li>
                                     <li>
                                         <a href="/contact">CONTACT</a>
@@ -153,7 +157,11 @@
                                     <ul>
                                         <li><a href="/">Home</a></li>
                                         <li><a href="/games">Games</a></li>
+                                        {% if game_id %}
+                                        <li><a href="/games/{{game_id}}/mods">Mods</a></li>
+                                        {% else %}
                                         <li><a href="/games">Mods</a></li>
+                                        {% endif %}
                                         
                                     </ul>
                                     <ul>

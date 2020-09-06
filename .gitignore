@@ -10,11 +10,14 @@ venv/
 
 auth.py
 
-secrest.py
+secrets.py
 
 test.py
 
 new_user_credentials.csv
+
+todo.txt
+
 
 
 
