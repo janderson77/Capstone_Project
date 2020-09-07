@@ -6263,6 +6263,15 @@ hr {
 	font-family: "Rubik", sans-serif;
 }
 
+.carousel-caption h5 a {
+	color: white;
+	-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
+	font-size: 3rem;
+	font-family: "Rubik", sans-serif;
+}
+
 .featured-mods-content {
 	position: relative;
 	left: 0;
