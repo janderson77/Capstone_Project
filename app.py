@@ -139,7 +139,7 @@ def logout():
     do_logout()
 
     flash("You have been successfully logged out.", 'success')
-    return redirect("/login")
+    return redirect("/users/login")
 
 
 @app.route('/contact')
