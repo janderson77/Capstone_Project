@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+        <!--=====================================-->
+        <!--=           Category Start        	=-->
+        <!--=====================================-->
+        <section class="inner-page-banner bg-common" data-bg-image="media/figure/banner1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumbs-area">
+                            <h1>{{game.game_title}} Mods</h1>
+                            <ul>
+                                <li>
+                                    <a href="/games">Games</a>
+                                </li>
+                                <li>
+                                    <a href="/games/{{game.id}}">Mods</a>
+                                </li>
+                                <li>{{game.game_title}} Mods</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=           Category Start        	=-->
+        <!--=====================================-->
+        <section class="inner-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9">
+
+                        {% for mod in mods %}
+                        <div class="post-list-layout3 align-items-center">
+                            <div class="item-img">
+                                <img src="{{img_url}}{{mod.main_mod_image}}" class="list-img" alt="{{mod.mod_name}}">
+                            </div>
+                            <div class="item-content">
+                                <div class="post-meta">
+                                    <ul>
+                                        <li><i class="flaticon-clock"></i> {{mod.posted_at}}</li>
+                                        <li class="item-author"><i class="flaticon-user bg-green"></i><span>By</span><a href="#">{{mod.user.username}}</a></li>
+                                    </ul>
+                                </div>
+                                <h3 class="item-title"><a href="/games/{{game_id}}/mods/{{mod.id}}"> {{mod.mod_name}}</h3>
+                                <p class="list-descrip">{{mod.description}}</p>
+                                <a href="/games/{{game_id}}/mods/{{mod.id}}" class="btn-fill-md">See The Mod</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        
+                    </div>
+                    <div class="col-xl-3 sidebar-widget-xl">
+                        <div class="widget widget-search">
+                            <div class="input-group stylish-input-group">
+                                <input type="text" class="form-control" placeholder="Not currently functional . . .">
+                                <span class="input-group-addon">
+                                    <button type="submit">
+                                        <span class="flaticon-search" aria-hidden="true"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pagination">
+            <!--=====================================-->
+            <!--=           Pagination          	=-->
+            <!--=====================================-->
+            <div class="pagination-layout1 col-xl-12">
+                <ul>
+                    {% if prev_url %}
+                    <li>
+                        <a href="{{ prev_url}}"><i class="fas fa-angle-left"></i></a>
+                    </li>
+                    {% endif %}
+                    <li><a href="#" class="active">1</a></li>
+                    {% if next_url %}
+                    <li>
+                        <a href="{{next_url}}"><i class="fas fa-angle-right"></i></a>
+                    </li>
+                    {% endif %}
+                    
+                </ul>
+            </div>
+        </section>
+{% endblock %}

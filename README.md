@@ -2,14 +2,12 @@
 
 > Capstone project for Springboard's Software Engineer Career Track
 
-
 ## Installation
 
 - Install all packages listed in "requirements.txt"
 - if everything is installed correctly, the homepage will appear as shown below
 
 ![Landing Screen](https://mod-page.s3-us-west-1.amazonaws.com/Annotation+2020-09-06+205700.png)()
-
 
 ## API Used
 
@@ -28,9 +26,9 @@
 - The app relies heavily on Flask and Jinja in order to be dynamic and anticipate future features to be implemented
 - When a file or image is uploaded a random number is generated and the name of the files/images are replaced in order to prevent mods or images with the same name from being overwritten
 
-# User Flow
+## User Flow
 
-## Logging in/ Regstering
+### Logging in/ Regstering
 
 - When first landing on the page you will see a list of games that the app has mods for
 
@@ -44,9 +42,9 @@
 
 - The required information for registering is a unique username, your email address and a password
 
-## Downloading a Mod
+### Downloading a Mod
 
-- Once logged in you are able to download mods. 
+- Once logged in you are able to download mods.
 
 - Select the game you are wanting mods for. You will be taken to the main mods page.
 
@@ -54,7 +52,7 @@
 
 - On the mod page, when you are logged in, there will be an download option. Selecting that will start the file download
 
-## Uploading a mod
+### Uploading a mod
 
 - To upload a mod you must be a registered user, and logged in.
 
@@ -64,15 +62,15 @@
 
 - The required information to upload a mod is its title and the archive file the mod files are stored in.
 
-    - All other fields are optional
+  - All other fields are optional
 
 - Once the required fields are filled and files selected, click Upload
 
 - Once the upload has completed you will be taken to the listing for your mod
 
-# Important Notes
+### Important Notes
 
-- At this time all planned features have not been implemented. 
+- At this time all planned features have not been implemented.
 
 - The next features to be worked on are a mods list page with pagination and a mod search function
 

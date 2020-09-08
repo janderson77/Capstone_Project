@@ -175,9 +175,11 @@ def show_game_mods(game_id):
     rec_mods = Mod.query.order_by(desc('id')).limit(3).all()
     # Gets most recent mods by querying the highest 3 mod ids
 
+    game = Game.query.filter_by(id=game_id).all()
+
     # import pdb
     # pdb.set_trace()
-    return render_template('games/index.html', mods=mods, img_link=IMG_BASE, rand_mods=rand_mods, rec_mods=rec_mods, feat_mods=feat_mods, game_id=game_id)
+    return render_template('games/index.html', mods=mods, img_link=IMG_BASE, rand_mods=rand_mods, rec_mods=rec_mods, feat_mods=feat_mods, game_id=game_id, game=game[0])
 
 
 @app.route('/games/<int:game_id>/mods/<int:mod_id>', methods=["GET", "POST"])
@@ -185,13 +187,14 @@ def show_mod_detials_page(game_id, mod_id):
     """Renders the details page for a mod including download link and images"""
 
     res = Mod.query.filter_by(id=mod_id).all()
+    game = Game.query.filter_by(id=game_id).all()
 
     user = res[0].user
     mod = res[0]
 
     img_link = f"{IMG_BASE}{mod.main_mod_image}"
     modlink = f"{MOD_BASE_ID}{mod.file_id}"
-    return render_template('/mods/mod_show.html', user=user, mod=mod, img_link=img_link, modlink=modlink, game_id=game_id)
+    return render_template('/mods/mod_show.html', user=user, mod=mod, img_link=img_link, modlink=modlink, game_id=game_id, game=game[0])
 
 # @app.route('/games/<int: game_id>/mods/<int: mod_id>/edit')
 
@@ -244,9 +247,24 @@ def show_mod_upload_page():
 
     return render_template('mods/upload.html', form=form)
 
-# @app.route('/games/<int: game_id>/mods/edit')
 # @app.route('/games/<int: game_id>/mods/delete')
-# @app.route('/games/<int: game_id>/mods/search')
+
+
+@app.route('/games/<int:game_id>/mods/list', methods=['GET', 'POST'])
+def show_mods_list(game_id):
+    """Will show the full list of mods for a given game"""
+    page = request.args.get('page', 1, type=int)
+    mods = Mod.query.filter_by(game_id=game_id).paginate(page, 5, False)
+    game = Game.query.filter_by(id=1).all()
+    img_url = IMG_BASE
+    # import pdb
+    # pdb.set_trace()
+    next_url = url_for('show_mods_list', game_id=game_id, page=mods.next_num) \
+        if mods.has_next else None
+    prev_url = url_for('show_mods_list', game_id=game_id, page=mods.prev_num) \
+        if mods.has_prev else None
+
+    return render_template('mods/list.html', mods=mods.items, next_url=next_url, prev_url=prev_url, img_url=img_url, game=game[0])
 
 
 ##############################################################################

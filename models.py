@@ -2,6 +2,7 @@ from datetime import datetime
 
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Date
 
 bcrypt = Bcrypt()
 db = SQLAlchemy()
@@ -89,8 +90,8 @@ class Mod(db.Model):
 
     user = db.relationship('User')
 
-    posted_at = db.Column(db.DateTime, nullable=False,
-                          default=datetime.utcnow())
+    posted_at = db.Column(db.Date(), nullable=False,
+                          default=datetime.now())
 
     description = db.Column(db.Text)
 
@@ -101,7 +102,7 @@ class Mod(db.Model):
     file_id = db.Column(db.Text, nullable=False)
 
     main_mod_image = db.Column(
-        db.Text, nullable=False, default='/static/images/default_mod_image.jpg')
+        db.Text, nullable=False, default='default_mod_image.jpg')
 
     sub_images = db.relationship('SubImages')
 
