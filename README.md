@@ -72,6 +72,14 @@
 
 - At this time all planned features have not been implemented.
 
-- The next features to be worked on are a mods list page with pagination and a mod search function
+- To be implemented:
+
+  - Mod update feature
+
+  - User profile edit feature
+
+  - Mod and user profile deletion
+
+  - Mod search
 
 - This project is proof of concept only. Please do not actually upload game mod information. The database is cleaned regularly and your data will not persist.
