@@ -15,10 +15,6 @@ from botocore.exceptions import ClientError
 import random
 import boto3
 import io
-import shutil
-import pickle
-import sys
-import tempfile
 import uuid
 
 client = boto3.client('s3',
@@ -179,8 +175,7 @@ def show_all_mods_list():
     page = request.args.get('page', 1, type=int)
     mods = Mod.query.paginate(page, 5, False)
     img_url = IMG_BASE
-    # import pdb
-    # pdb.set_trace()
+
     next_url = url_for('show_all_mods_list', page=mods.next_num) \
         if mods.has_next else None
     prev_url = url_for('show_all_mods_list', page=mods.prev_num) \
@@ -224,9 +219,6 @@ def show_mod_detials_page(game_id, mod_id):
 
     filename, file_extension = os.path.splitext(f"{mod.file_id}")
     new_file_name = f"{mod.mod_name}{file_extension}"
-
-    # import pdb
-    # pdb.set_trace()
 
     img_link = f"{IMG_BASE}{mod.main_mod_image}"
     modlink = f"{MOD_BASE_ID}{mod.file_id}"
@@ -293,8 +285,7 @@ def show_mods_list(game_id):
     mods = Mod.query.filter_by(game_id=game_id).paginate(page, 5, False)
     game = Game.query.filter_by(id=game_id).all()
     img_url = IMG_BASE
-    # import pdb
-    # pdb.set_trace()
+
     next_url = url_for('show_mods_list', game_id=game_id, page=mods.next_num) \
         if mods.has_next else None
     prev_url = url_for('show_mods_list', game_id=game_id, page=mods.prev_num) \

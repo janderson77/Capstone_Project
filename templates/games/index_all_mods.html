@@ -22,10 +22,12 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block " src="{{img_link}}{{rand_mods[0].main_mod_image}}" alt="First slide">
+                  
+                <img class="d-block"  src="{{img_link}}{{rand_mods[0].main_mod_image}}" alt="First slide">
+
                 <!--Carousel Caption-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><a href="/games/{{game_id}}/rand_mods/{{mods[0].id}}">{{rand_mods[0].mod_name}}</a></h5>
+                    <h5><a href="/games/{{rand_mods[0].game_id}}/mods/{{rand_mods[0].id}}">{{rand_mods[0].mod_name}}</a></h5>
                     
                   </div>
                 <!--End Carousel Caption-->
@@ -35,7 +37,7 @@
                 <img class="d-block " src="{{img_link}}{{rand_mods[1].main_mod_image}}" alt="Second slide"> 
                 <!--Carousel Caption-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><a href="/games/{{game_id}}/mods/{{rand_mods[1].id}}"></a>{{rand_mods[1].mod_name}}</a></h5>
+                    <h5><a href="/games/{{rand_mods[1].game_id}}/mods/{{rand_mods[1].id}}"></a>{{rand_mods[1].mod_name}}</a></h5>
                     
                   </div>
                   <!--End Carousel Caption-->
@@ -46,7 +48,7 @@
                 <img class="d-block " src="{{img_link}}{{rand_mods[2].main_mod_image}}" alt="Third slide">
                 <!--Carousel Caption-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><a href="/games/{{game_id}}/mods/{{rand_mods[2].id}}"></a>{{rand_mods[2].mod_name}}</a></h5>
+                    <h5><a href="/games/{{rand_mods[2].game_id}}/mods/{{rand_mods[2].id}}"></a>{{rand_mods[2].mod_name}}</a></h5>
                     
                   </div>
                   <!--End Carousel Caption-->

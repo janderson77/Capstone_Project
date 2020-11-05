@@ -6379,18 +6379,18 @@ hr {
 	-webkit-box-orient: vertical;
 }
 
-/* .pagination {
-	display: flex;
-
-	justify-content: center;
-	align-items: center;
-
-	margin: 1rem;
+.carousel-control-prev {
+	width: 7%;
 }
 
-.pagination .pagination-layout1 {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-} */
+.carousel-control-next {
+	width: 7%;
+}
+
+.carousel-control-prev:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-control-next:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+}
