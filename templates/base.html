@@ -104,9 +104,9 @@
                                     </li>
                                     <li>
                                         {% if game_id %}
-                                        <a href="/games/{{game_id}}/mods/list">MODS</a>
+                                        <a href="/games/{{game_id}}/mods">MODS</a>
                                         {% else %}
-                                        <a href="/games">MODS</a>
+                                        <a href="/mods/all">MODS</a>
                                         {% endif %}
                                     </li>
                                     <li>
@@ -158,7 +158,7 @@
                                         <li><a href="/">Home</a></li>
                                         <li><a href="/games">Games</a></li>
                                         {% if game_id %}
-                                        <li><a href="/games/{{game_id}}/mods">Mods</a></li>
+                                        <li><a href="/games/{{game_id}}/mods/">Mods</a></li>
                                         {% else %}
                                         <li><a href="/games">Mods</a></li>
                                         {% endif %}

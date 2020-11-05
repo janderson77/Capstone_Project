@@ -5,7 +5,7 @@
         <!--=====================================-->
         <!--=           Inner Banner Start      =-->
         <!--=====================================-->
-        <section class="inner-page-banner bg-common" data-bg-image="media/figure/banner1.jpg">
+        <section class="inner-page-banner bg-common" data-bg-image="/static/media/figure/banner1.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -64,7 +64,7 @@
                                                 
                                                 {% if g.user %}
                                                 <li>
-                                                    <a class="btn btn-outline-dark" href="{{modlink}}" id="mod-download" download="{{mod.mod_name}}"><i class="fas fa-download" ></i> Download</a>
+                                                    <a class="btn btn-outline-dark" href="{{modlink}}" id="mod-download" download="{{filename}}" value="{{filename}}"><i class="fas fa-download" ></i> Download</a>
                                                 </li>
                                                 {% else %}
                                                 <li>

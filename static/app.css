@@ -4089,6 +4089,18 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 	transform: scale(1.05);
 }
 
+.post-list-layout3-hr {
+	margin: 2rem 0 2rem 0;
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(248, 1, 54, 0), rgba(248, 1, 54, 0.75), rgba(248, 1, 54, 0));
+}
+
+.post-list-layout3 {
+	background-color: #e5e5e5;
+	margin-bottom: 0;
+}
+
 .post-list-layout3.post-grid-layout5 {
 	display: inherit;
 	margin-bottom: 2.1875rem;
@@ -4190,7 +4202,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 }
 
 .post-grid-layout3.post-grid7 {
-	margin-bottom: 1.875rem;
+	margin-bottom: 1rem;
 }
 
 @media only screen and (max-width: 991px) {
@@ -4821,7 +4833,7 @@ nav.template-main-menu > ul > li:hover ul.dropdown-menu-col-1 {
 }
 
 .post-list-layout3 {
-	margin-bottom: 1.875rem;
+	margin-bottom: 1rem;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -6354,11 +6366,17 @@ hr {
 
 .list-descrip {
 	display: block;
-	width: 300px;
+	max-width: 420px;
 	max-height: 250px;
 	overflow: hidden;
 	white-space: normal;
 	text-overflow: ellipsis;
+}
+
+.list-descrip {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
 }
 
 /* .pagination {

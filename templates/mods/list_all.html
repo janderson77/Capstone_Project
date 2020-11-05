@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{% endblock %}
+{% block title %}Koi Mods All Mods{% endblock %}
 {% block content %}
         <!--=====================================-->
         <!--=           Category Start        	=-->
@@ -9,15 +9,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="breadcrumbs-area">
-                            <h1>{{game.game_title}} Mods</h1>
+                            <h1>All Mods</h1>
                             <ul>
                                 <li>
                                     <a href="/games">Games</a>
                                 </li>
                                 <li>
-                                    <a href="/games/{{game.id}}/mods">Mods</a>
+                                    <a href="/">Mods</a>
                                 </li>
-                                <li>{{game.game_title}} Mods</li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
 
                         {% for mod in mods %}
                         <div class="post-list-layout3 align-items-center">
-                            <a href="/games/{{game.id}}/mods/{{mod.id}}">
+                            <a href="/games/{{mod.game_id}}/mods/{{mod.id}}">
                                 <div class="item-img">
                                     <img src="{{img_url}}{{mod.main_mod_image}}" class="list-img" alt="{{mod.mod_name}}" />
                                 </div>
@@ -51,7 +51,7 @@
                                     </ul>
                                 </div>
                                 <h3 class="item-title">
-                                    <a href="/games/{{game.id}}/mods/{{mod.id}}"> {{mod.mod_name}}</a>
+                                    <a href="/games/{{mod.game_id}}/mods/{{mod.id}}"> {{mod.mod_name}}</a>
                                 </h3>
                                 <p class="list-descrip">{{mod.description}}</p>
                             </div>
