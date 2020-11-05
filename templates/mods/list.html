@@ -4,7 +4,7 @@
         <!--=====================================-->
         <!--=           Category Start        	=-->
         <!--=====================================-->
-        <section class="inner-page-banner bg-common" data-bg-image="media/figure/banner1.jpg">
+        <section class="inner-page-banner bg-common" data-bg-image="/static/media/figure/banner1.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -34,9 +34,11 @@
 
                         {% for mod in mods %}
                         <div class="post-list-layout3 align-items-center">
-                            <div class="item-img">
-                                <img src="{{img_url}}{{mod.main_mod_image}}" class="list-img" alt="{{mod.mod_name}}">
-                            </div>
+                            <a href="/games/{{game.id}}/mods/{{mod.id}}">
+                                <div class="item-img">
+                                    <img src="{{img_url}}{{mod.main_mod_image}}" class="list-img" alt="{{mod.mod_name}}">
+                                </div>
+                            </a>
                             <div class="item-content">
                                 <div class="post-meta">
                                     <ul>
@@ -44,9 +46,9 @@
                                         <li class="item-author"><i class="flaticon-user bg-green"></i><span>By</span><a href="#">{{mod.user.username}}</a></li>
                                     </ul>
                                 </div>
-                                <h3 class="item-title"><a href="/games/{{game_id}}/mods/{{mod.id}}"> {{mod.mod_name}}</h3>
+                                <h3 class="item-title"><a href="/games/{{game.id}}/mods/{{mod.id}}"> {{mod.mod_name}}</h3>
                                 <p class="list-descrip">{{mod.description}}</p>
-                                <a href="/games/{{game_id}}/mods/{{mod.id}}" class="btn-fill-md">See The Mod</a>
+                                <a href="/games/{{game.id}}/mods/{{mod.id}}" class="btn-fill-md">See The Mod</a>
                             </div>
                         </div>
                         {% endfor %}
@@ -80,7 +82,7 @@
                         <a href="{{ prev_url}}"><i class="fas fa-angle-left"></i></a>
                     </li>
                     {% endif %}
-                    <li><a href="#" class="active">1</a></li>
+                    <li><a href="#" class="active">{{page}}</a></li>
                     {% if next_url %}
                     <li>
                         <a href="{{next_url}}"><i class="fas fa-angle-right"></i></a>

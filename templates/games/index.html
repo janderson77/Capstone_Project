@@ -22,31 +22,31 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block " src="{{img_link}}{{mods[0].main_mod_image}}" alt="First slide">
+                <img class="d-block " src="{{img_link}}{{rand_mods[0].main_mod_image}}" alt="First slide">
                 <!--Carousel Caption-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><a href="/games/{{game_id}}/mods/{{mods[0].id}}">{{mods[0].mod_name}}</a></h5>
+                    <h5><a href="/games/{{game_id}}/rand_mods/{{mods[0].id}}">{{rand_mods[0].mod_name}}</a></h5>
                     
                   </div>
                 <!--End Carousel Caption-->
               </div>
-              {% if mods[1] %}
+              {% if rand_mods[1] %}
               <div class="carousel-item">
-                <img class="d-block " src="{{img_link}}{{mods[1].main_mod_image}}" alt="Second slide"> 
+                <img class="d-block " src="{{img_link}}{{rand_mods[1].main_mod_image}}" alt="Second slide"> 
                 <!--Carousel Caption-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><a href="/games/{{game_id}}/mods/{{mods[1].id}}"></a>{{mods[1].mod_name}}</a></h5>
+                    <h5><a href="/games/{{game_id}}/mods/{{rand_mods[1].id}}"></a>{{rand_mods[1].mod_name}}</a></h5>
                     
                   </div>
                   <!--End Carousel Caption-->
               </div>
               {% endif %}
-              {% if mods[2] %}
+              {% if rand_mods[2] %}
               <div class="carousel-item">
-                <img class="d-block " src="{{img_link}}{{mods[2].main_mod_image}}" alt="Third slide">
+                <img class="d-block " src="{{img_link}}{{rand_mods[2].main_mod_image}}" alt="Third slide">
                 <!--Carousel Caption-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h5><a href="/games/{{game_id}}/mods/{{mods[2].id}}"></a>{{mods[2].mod_name}}</a></h5>
+                    <h5><a href="/games/{{game_id}}/mods/{{rand_mods[2].id}}"></a>{{rand_mods[2].mod_name}}</a></h5>
                     
                   </div>
                   <!--End Carousel Caption-->
@@ -69,7 +69,7 @@
 
         <div class="col-12 d-flex justify-content-center align-items-center mt-3">
             <div class="col=3"></div>
-            <a href="/games/game_id/mods/list"><div class="col=6 heading-layout4"><p class="heading-title">See All {{game.game_title}} Mods</p></div></a>
+            <a href="/games/{{game_id}}/mods/list"><div class="col=6 heading-layout4"><p class="heading-title">See All {{game.game_title}} Mods</p></div></a>
             <div class="col=3"></div>
         </div>
 

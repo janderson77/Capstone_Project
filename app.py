@@ -79,6 +79,7 @@ def do_logout():
 
 @app.route('/')
 def show_home_page():
+    # !!!!!!!!!!Convert to list all mods for all games page!!!!!!!!!!!!!
     return redirect('/games')
 
 
@@ -177,8 +178,6 @@ def show_game_mods(game_id):
 
     game = Game.query.filter_by(id=game_id).all()
 
-    # import pdb
-    # pdb.set_trace()
     return render_template('games/index.html', mods=mods, img_link=IMG_BASE, rand_mods=rand_mods, rec_mods=rec_mods, feat_mods=feat_mods, game_id=game_id, game=game[0])
 
 
@@ -187,7 +186,13 @@ def show_mod_detials_page(game_id, mod_id):
     """Renders the details page for a mod including download link and images"""
 
     res = Mod.query.filter_by(id=mod_id).all()
+    if len(res) < 1:
+        abort(404)
+
     game = Game.query.filter_by(id=game_id).all()
+
+    # import pdb
+    # pdb.set_trace()
 
     user = res[0].user
     mod = res[0]
@@ -255,7 +260,7 @@ def show_mods_list(game_id):
     """Will show the full list of mods for a given game"""
     page = request.args.get('page', 1, type=int)
     mods = Mod.query.filter_by(game_id=game_id).paginate(page, 5, False)
-    game = Game.query.filter_by(id=1).all()
+    game = Game.query.filter_by(id=game_id).all()
     img_url = IMG_BASE
     # import pdb
     # pdb.set_trace()
@@ -264,7 +269,7 @@ def show_mods_list(game_id):
     prev_url = url_for('show_mods_list', game_id=game_id, page=mods.prev_num) \
         if mods.has_prev else None
 
-    return render_template('mods/list.html', mods=mods.items, next_url=next_url, prev_url=prev_url, img_url=img_url, game=game[0])
+    return render_template('mods/list.html', mods=mods.items, next_url=next_url, prev_url=prev_url, img_url=img_url, game=game[0], page=page)
 
 
 ##############################################################################
