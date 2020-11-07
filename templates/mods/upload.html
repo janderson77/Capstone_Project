@@ -37,8 +37,9 @@
                                 {% for error in field.errors %}
                                     <span class="text-danger">{{ error }}</span>
                                 {% endfor %}
-                                {{ field.label }}
-                                {{ field(placeholder=field.label.text, class="form-control") }}
+                                {{ field.label(class="upload-label") }}
+                                <hr class="upload-label-hr" />
+                                {{ field(placeholder=field.description, class="form-control") }}
                                 {% endfor %}
                                 <div class="d-flex flex-column align-items-center">
                                     <div>

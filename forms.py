@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField
-from wtforms import StringField, PasswordField, TextAreaField, SelectField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms import StringField, PasswordField, TextAreaField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Email, Length
 
 
@@ -21,11 +21,24 @@ class LoginForm(FlaskForm):
 
 
 class UploadModForm(FlaskForm):
-    modname = StringField('The name of your Mod', validators=[DataRequired()])
-    modgame = SelectField('The Game the mod is for')
-    description = StringField('(Optional) Description for your Mod')
-    requirements = StringField('(Optional) Requirements for your Mod')
-    installation = StringField(
-        '(Optional) Installation Instructions for your Mod')
-    modfile = FileField('Mod File Archive (7z, zip, zipx, rar Only)')
-    modimage = FileField('Main Mod Image(png, jpg, jpeg, gif)')
+    modname = StringField('The Name Of Your Mod', validators=[
+                          DataRequired()], description="Super Awesome and Immersive Mod")
+    modgame = SelectField('The Game The Mod Is For')
+    description = TextAreaField(
+        'Description For Your Mod', description="(Optional)")
+    requirements = TextAreaField(
+        'Requirements For Your Mod', description="(Optional)")
+    installation = TextAreaField(
+        'Installation Instructions For Your Mod', description="(Optional)")
+    modfile = FileField('Mod File Archive (7z, zip, zipx, rar)',
+                        validators=[
+                            FileRequired(), FileAllowed(
+                                ['7z', 'zip', 'zipx', 'rar'], 'Archives Only!')
+                        ],
+                        render_kw={"accept": ".7z, .zip, .zipx, .rar"}
+                        )
+    modimage = FileField('Main Mod Image (png, jpg, jpeg, gif)',
+                         validators=[
+                             FileAllowed(['png', 'jpg', 'jpeg', 'gif'], "Images Only!")],
+                         render_kw={"accept": ".png, .jpg, .jpeg, .gif"}
+                         )

@@ -6394,3 +6394,21 @@ hr {
 .carousel-control-next:hover {
 	background-color: rgba(0, 0, 0, 0.5);
 }
+
+input.form-control {
+	height: auto;
+	width: 450px;
+}
+
+.upload-label {
+	margin-top: 1.5rem;
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+.upload-label-hr {
+	color: #f80136;
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(248, 1, 54, 0), rgba(248, 1, 54, 0.75), rgba(248, 1, 54, 0));
+}
