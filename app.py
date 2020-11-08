@@ -17,8 +17,8 @@ import io
 import uuid
 
 app = Flask(__name__)
-app.config['access_key'] = os.environ.get('access_key')
-app.config['secret_access_key'] = os.environ.get('secret_access_key')
+access_key = os.environ.get('access_key')
+secret_access_key = os.environ.get('secret_access_key')
 
 
 client = boto3.client('s3',
