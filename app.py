@@ -366,61 +366,67 @@ def upload_mod_file(request):
         files.filename = filename
         # Changes the file name to a randomly generated number to be used as the unique ID
 
-        # cwd = Path.cwd()
-        # f = PurePath(cwd, 'uploads')
-        # path = Path(f)
-        # # Finds the uploads file path
+        cwd = Path.cwd()
+        f = PurePath(cwd, 'uploads')
+        path = Path(f)
+        # Finds the uploads file path
 
-        # p_obj_path = PurePath(path, filename)
-        # obj_path = Path(p_obj_path)
-        # # Sets the path for the file to be saved at
+        p_obj_path = PurePath(path, filename)
+        obj_path = Path(p_obj_path)
+        # Sets the path for the file to be saved at
 
-        with tempfile.TemporaryDirectory() as tmpdir:
-            new_file = files.save(tmpdir)
+        new_file = files.save(obj_path)
 
-           # new_file = files.save(obj_path)
+        # *****************
 
-            if new_file.is_file():
-                upload_file_bucket = 'mod-page'
-                upload_file_key = 'mods/' + filename
+        # with tempfile.TemporaryDirectory() as tmpdir:
+        #     new_file = files.save(tmpdir)
 
-                try:
-                    file_obj = open(new_file, 'rb')
+        #    # new_file = files.save(obj_path)
 
-                    res = client.upload_fileobj(
-                        file_obj, upload_file_bucket, upload_file_key)
-                    file_obj.close()
-                except ClientError as e:
-                    errors = logging.error(e)
-                    return errors
+        #     if new_file.is_file():
+        #         upload_file_bucket = 'mod-page'
+        #         upload_file_key = 'mods/' + filename
 
-                mod_file = {'id': filename}
+        #         try:
+        #             file_obj = open(new_file, 'rb')
 
-                return mod_file
-            else:
-                flash('Something Went Wrong', 'warning')
+        #             res = client.upload_fileobj(
+        #                 file_obj, upload_file_bucket, upload_file_key)
+        #             file_obj.close()
+        #         except ClientError as e:
+        #             errors = logging.error(e)
+        #             return errors
 
-                return redirect('/games/upload')
+        #         mod_file = {'id': filename}
 
-        # if obj_path.is_file():
-        #     upload_file_bucket = 'mod-page'
-        #     upload_file_key = 'mods/' + filename
-        #     try:
-        #         file_obj = open(obj_path, 'rb')
+        #         return mod_file
+        #     else:
+        #         flash('Something Went Wrong', 'warning')
 
-        #         res = client.upload_fileobj(
-        #             file_obj, upload_file_bucket, upload_file_key)
-        #         file_obj.close()
-        #     except ClientError as e:
-        #         errors = logging.error(e)
-        #         return errors
+        #         return redirect('/games/upload')
 
-        #     mod_file = {'id': filename}
-        #     Path.unlink(obj_path)
-        #     return mod_file
-        # else:
-        #     flash('Something Went Wrong', 'warning')
-        #     return redirect('/games/upload')
+        # **********************
+
+        if obj_path.is_file():
+            upload_file_bucket = 'mod-page'
+            upload_file_key = 'mods/' + filename
+            try:
+                file_obj = open(obj_path, 'rb')
+
+                res = client.upload_fileobj(
+                    file_obj, upload_file_bucket, upload_file_key)
+                file_obj.close()
+            except ClientError as e:
+                errors = logging.error(e)
+                return errors
+
+            mod_file = {'id': filename}
+            Path.unlink(obj_path)
+            return mod_file
+        else:
+            flash('Something Went Wrong', 'warning')
+            return redirect('/games/upload')
 
 
 def upload_mod_image(request):
