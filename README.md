@@ -83,3 +83,5 @@
   - Mod search
 
 - This project is proof of concept only. Please do not actually upload game mod information. The database is cleaned regularly and your data will not persist.
+
+- All "Games" are fictional and creation of the author of this app. Any resemblence to real games or video game development companies is purely coincidential.

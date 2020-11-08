@@ -1298,6 +1298,7 @@ h6 {
 .footer-bottom-wrap {
 	background-color: #000000;
 	padding: 1.875rem 0;
+	text-align: center;
 }
 
 .footer-bottom-wrap .footer-copyright {
@@ -6440,4 +6441,12 @@ input.form-control {
 
 .error-area {
 	min-height: 0;
+}
+
+.footer-legal {
+	margin-bottom: 0;
+}
+
+.footer-legal p {
+	margin-bottom: 0;
 }
