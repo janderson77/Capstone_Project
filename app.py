@@ -16,6 +16,9 @@ import boto3
 import io
 import uuid
 
+app.config['access_key'] = os.environ.get('access_key')
+app.config['secret_access_key'] = os.environ.get('secret_access_key')
+
 
 client = boto3.client('s3',
                       aws_access_key_id=access_key,
