@@ -8,7 +8,6 @@ from sqlalchemy import desc, asc
 from forms import UserAddForm, LoginForm, UploadModForm
 from models import db, connect_db, User, Mod, Game
 from werkzeug.utils import secure_filename
-from secrets import secret_access_key, access_key
 from pathlib import Path, PurePath
 from botocore.exceptions import ClientError
 
