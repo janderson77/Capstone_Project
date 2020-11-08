@@ -7,7 +7,7 @@
 - Install all packages listed in "requirements.txt"
 - if everything is installed correctly, the homepage will appear as shown below
 
-![Landing Screen](https://mod-page.s3-us-west-1.amazonaws.com/Annotation+2020-09-06+205700.png)()
+![Landing Screen](https://mod-page.s3-us-west-1.amazonaws.com/landing_page.png)()
 
 ## API Used
 
