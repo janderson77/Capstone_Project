@@ -212,7 +212,7 @@ def show_games_list():
 @app.route('/mods/all')
 def show_all_mods_list():
     page = request.args.get('page', 1, type=int)
-    mods = Mod.query.order_by(desc('posted_at')).paginate(page, 5, False)
+    mods = Mod.query.order_by(desc('id')).paginate(page, 5, False)
     img_url = IMG_BASE
 
     next_url = url_for('show_all_mods_list', page=mods.next_num) \
