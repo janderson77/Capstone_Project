@@ -163,7 +163,7 @@ def showUserProfile(user_id):
     if len(userres) < 1:
         abort(404)
 
-    console.log(g.user)
+    print(g.user)
 
     if g.user:
         if g.user.id == user_id:
