@@ -377,37 +377,6 @@ def upload_mod_file(request):
 
         new_file = files.save(obj_path)
 
-        # *****************
-
-        # with tempfile.TemporaryDirectory() as tmpdir:
-        #     new_file = files.save(tmpdir)
-
-        #    # new_file = files.save(obj_path)
-
-        #     if new_file.is_file():
-        #         upload_file_bucket = 'mod-page'
-        #         upload_file_key = 'mods/' + filename
-
-        #         try:
-        #             file_obj = open(new_file, 'rb')
-
-        #             res = client.upload_fileobj(
-        #                 file_obj, upload_file_bucket, upload_file_key)
-        #             file_obj.close()
-        #         except ClientError as e:
-        #             errors = logging.error(e)
-        #             return errors
-
-        #         mod_file = {'id': filename}
-
-        #         return mod_file
-        #     else:
-        #         flash('Something Went Wrong', 'warning')
-
-        #         return redirect('/games/upload')
-
-        # **********************
-
         if obj_path.is_file():
             upload_file_bucket = 'mod-page'
             upload_file_key = 'mods/' + filename
