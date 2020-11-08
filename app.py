@@ -17,6 +17,7 @@ import boto3
 import io
 import uuid
 
+
 client = boto3.client('s3',
                       aws_access_key_id=access_key,
                       aws_secret_access_key=secret_access_key)
@@ -40,7 +41,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = (
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'awsonaowhnoawrhnoarw')
 
 app.config['UPLOAD_FOLDER'] = Path('uploads')
 
