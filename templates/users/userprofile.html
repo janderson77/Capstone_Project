@@ -86,7 +86,11 @@
                                 <div class="item-content">
                                     <h3 class="author-name">{{user.username}}'s Activity</h3>
                                     <p>Mods: {{totalmods}}</p>
+                                    {% if mods[0] %}
                                     <p>Last Upload: {{mods[0].posted_at}}</p>
+                                    {% else %}
+                                    <p>Last Upload: Nothing Yet...</p>
+                                    {% endif %}
                                     
                                 </div>
                             </div>
