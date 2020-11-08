@@ -229,13 +229,16 @@ def show_game_mods(game_id):
     mods = Mod.query.filter_by(game_id=game_id).group_by(
         Mod.posted_at, Mod.id).all()
 
-    rand_mods = Mod.query.order_by(func.random()).limit(5).all()
+    rand_mods = Mod.query.filter_by(game_id=game_id).order_by(
+        func.random()).limit(5).all()
     # Returns 5 randomly ordered mods for the random mods section
 
-    feat_mods = Mod.query.order_by(func.random()).limit(4).all()
+    feat_mods = Mod.query.filter_by(game_id=game_id).order_by(
+        func.random()).limit(4).all()
     # Gets 4 random mods. Will be changed later to get by most likes when that's implemented
 
-    rec_mods = Mod.query.order_by(desc('id')).limit(3).all()
+    rec_mods = Mod.query.filter_by(
+        game_id=game_id).order_by(desc('id')).limit(3).all()
     # Gets most recent mods by querying the highest 3 mod ids
 
     game = Game.query.filter_by(id=game_id).all()

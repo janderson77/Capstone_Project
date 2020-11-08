@@ -88,48 +88,55 @@
                             </div>
 
                             {% if rec_mods[0] %}
-                            <div class="grid-post">
-                                <div class="item-img">
-                                    <img src="{{img_link}}{{rec_mods[0].main_mod_image}}" alt="Post">
-                                    
+                            <a href="/games/{{rec_mods[0].game_id}}/mods/{{rec_mods[0].id}}">
+                                <div class="grid-post">
+                                    <div class="item-img">
+                                        <img src="{{img_link}}{{rec_mods[0].main_mod_image}}" alt="Post">
+                                        
                                 </div>
-                                <div class="item-content">
-                                    <div class="post-date"><i class="flaticon-clock"></i> {{rec_mods[0].posted_at}}</div>
-                                    <h3 class="post-title"><a href="/games/{{game_id}}/mods/{{rec_mods[0].id}}">{{rec_mods[0].mod_name}}</a></h3>
+                            </a>
+                            <div class="item-content">
+                                <div class="post-date"><i class="flaticon-clock"></i> {{rec_mods[0].posted_at}}</div>
+                                    <h3 class="post-title"><a href="/games/{{rec_mods[0].game_id}}/mods/{{rec_mods[0].id}}">{{rec_mods[0].mod_name}}</a></h3>
                                 </div>
                             </div>
                             {% endif %}
 
                             <div class="list-post">
-                                {% if rec_mods[1] %}
-                                <div class="media">
+                            {% if rec_mods[1] %}
+                            <div class="media">
+                                <a href="/games/{{rec_mods[1].game_id}}/mods/{{rec_mods[1].id}}">
                                     <div class="item-img">
                                         <img src="{{img_link}}{{rec_mods[1].main_mod_image}}" alt="Post">
                                     </div>
-                                    <div class="media-body">
-                                        <div class="post-date"><i class="flaticon-clock"></i> {{rec_mods[1].posted_at}}</div>
-                                        <h4 class="post-title"><a href="/games/{{game_id}}/mods/{{rec_mods[1].id}}">{{rec_mods[1].mod_name}}</a></h4>
-                                    </div>
-                                </div>
-                                {% endif %}
+                                </a>
+                            
+                            <div class="media-body">
+                                <div class="post-date"><i class="flaticon-clock"></i> {{rec_mods[1].posted_at}}</div>
+                                    <h4 class="post-title"><a href="/games/{{rec_mods[1].game_id}}/mods/{{rec_mods[1].id}}">{{rec_mods[1].mod_name}}</a></h4>
+                            </div>
+                            </div>
+                            {% endif %}
 
-                                {% if rec_mods[2] %}
-                                <div class="media mb-0 pb-0 border-0">
+                            {% if rec_mods[2] %}
+                            <div class="media mb-0 pb-0 border-0">
+                                <a href="/games/{{rec_mods[2].game_id}}/mods/{{rec_mods[2].id}}">
                                     <div class="item-img">
                                         <img src="{{img_link}}{{rec_mods[2].main_mod_image}}" alt="Post">
                                     </div>
-                                    <div class="media-body">
-                                        <div class="post-date"><i class="flaticon-clock"></i> {{rec_mods[2].posted_at}}</div>
-                                        <h4 class="post-title"><a href="/games/{{game_id}}/mods/{{rec_mods[2].id}}">{{rec_mods[2].mod_name}}</a></h4>
-                                    </div>
+                                </a>
+                                <div class="media-body">
+                                    <div class="post-date"><i class="flaticon-clock"></i> {{rec_mods[2].posted_at}}</div>
+                                    <h4 class="post-title"><a href="/games/{{rec_mods[2].game_id}}/mods/{{rec_mods[2].id}}">{{rec_mods[2].mod_name}}</a></h4>
                                 </div>
-                                {% endif %}
+                            </div>
+                            {% endif %}
 
                             </div>
                         </div>
                     </div>
                     <!--=====================================-->
-                    <!-- =         Most Recent Start        =-->
+                    <!-- =         Random Mods Start        =-->
                     <!--=====================================-->
                     <div class="col-xl-3 col-lg-12 col-md-6 order-lg-3">
                         <div class="heading-layout1">
@@ -139,9 +146,11 @@
                             <div class="post-list-layout2">
                                 {% for mod in rand_mods %}
                                 <div class="media">
-                                    <div class="item-img">
-                                        <img src="{{img_link}}{{mod.main_mod_image}}" alt="Post">
-                                    </div>
+                                    <a href="/games/{{mod.game_id}}/mods/{{mod.id}}">
+                                        <div class="item-img">
+                                            <img src="{{img_link}}{{mod.main_mod_image}}" alt="Post">
+                                        </div>
+                                    </a>
                                     <div class="media-body">
                                         <div class="post-date"><i class="flaticon-clock"></i> {{mod.posted_at}}</div>
                                         <h4 class="post-title"><a href="/games/{{mod.game_id}}/mods/{{mod.id}}">{{mod.mod_name}}</a></h4>
@@ -168,10 +177,12 @@
                             {% for mod in feat_mods%}
                             <div class="col-md-6 d-flex align-items-center justify-content-center feat_mods">
                                 <div class="post-grid-layout3 post-grid11">
-                                    <div class="post-img featured">
-                                        <img src="{{img_link}}{{mod.main_mod_image}}" alt="Games">
-                                        
-                                    </div>
+                                    <a href="/games/{{mod.game_id}}/mods/{{mod.id}}">
+                                        <div class="post-img featured">
+                                            <img src="{{img_link}}{{mod.main_mod_image}}" alt="Games">
+                                            
+                                        </div>
+                                    </a>
                                     <div class="post-content featured-mods-content">
                                         <div class="post-date"><i class="flaticon-clock"></i> {{mod.posted_at}}</div>
                                         <h3 class="post-title"><a href="/games/{{mod.game.id}}/mods/{{mod.id}}">{{mod.mod_name}}</a></h3>
