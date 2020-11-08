@@ -16,6 +16,7 @@ import boto3
 import io
 import uuid
 
+app = Flask(__name__)
 app.config['access_key'] = os.environ.get('access_key')
 app.config['secret_access_key'] = os.environ.get('secret_access_key')
 
@@ -34,8 +35,6 @@ CURR_USER_KEY = "curr_user"
 MOD_BASE_ID = 'https://mod-page.s3-us-west-1.amazonaws.com/mods/'
 IMG_BASE = 'https://mod-page.s3-us-west-1.amazonaws.com/mods/'
 PROFILE_IMG_BASE = 'https://mod-page.s3-us-west-1.amazonaws.com/users/'
-
-app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     os.environ.get('DATABASE_URL', 'postgres:///modpage'))
