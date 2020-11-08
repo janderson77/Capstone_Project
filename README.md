@@ -30,9 +30,9 @@
 
 ### Logging in/ Regstering
 
-- When first landing on the page you will see a list of games that the app has mods for
+- When first landing on the page you will see the home screen which showcases mods from every supported game
 
-- You are able to select a game, and view mods for the game, but are not able to download without being a logged in user
+- You are able to either explore the mods offered, or click on the "Games" link to select a game and view mods for your selection, but are not able to download without being a logged in user
 
 - The option to login/register will be on the top left of the screen
 
@@ -40,7 +40,7 @@
 
 - There will be an option to register if you are not a current user. Clicking that will take you to the registration screen.
 
-- The required information for registering is a unique username, your email address and a password
+- The required information for registering is a unique username, your email address (must also be unique) and a password. The user profile image is optional, and if none is provided, a default is assigned.
 
 ### Downloading a Mod
 
@@ -54,7 +54,7 @@
 
 ### Uploading a mod
 
-- To upload a mod you must be a registered user, and logged in.
+- To upload a mod you must be a registered user and logged in.
 
 - Once logged in, there will be an option on the top right to upload
 
@@ -64,9 +64,11 @@
 
   - All other fields are optional
 
-- Once the required fields are filled and files selected, click Upload
+  - If no mod image is provided a default is assigned
 
-- Once the upload has completed you will be taken to the listing for your mod
+- Once the required fields are filled out and files selected, click "Upload"
+
+- Once the upload has completed you will be taken to the page for your mod
 
 ### Important Notes
 
