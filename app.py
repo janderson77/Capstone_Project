@@ -32,6 +32,8 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 CURR_USER_KEY = "curr_user"
 
+print(Path.cwd())
+
 MOD_BASE_ID = 'https://mod-page.s3-us-west-1.amazonaws.com/mods/'
 IMG_BASE = 'https://mod-page.s3-us-west-1.amazonaws.com/mods/'
 PROFILE_IMG_BASE = 'https://mod-page.s3-us-west-1.amazonaws.com/users/'
