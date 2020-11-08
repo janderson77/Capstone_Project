@@ -6437,3 +6437,7 @@ input.form-control {
 .no-mods {
 	text-align: center;
 }
+
+.error-area {
+	min-height: 0;
+}

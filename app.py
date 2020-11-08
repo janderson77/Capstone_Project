@@ -105,7 +105,7 @@ def register():
             user = User.query.filter_by(username=newuser.username).all()
 
         except IntegrityError as e:
-            flash("Username already taken", 'danger')
+            flash("Username or email already in use", 'danger')
             return render_template('users/register.html', form=form)
 
         do_login(newuser)
@@ -128,7 +128,6 @@ def login():
 
         if user:
             do_login(user)
-            flash(f"Hello, {user.username}!", "success")
             return redirect("/")
 
         flash("Invalid credentials.", 'danger')
@@ -343,12 +342,12 @@ def upload_mod_file(request):
     """Processes a mod archive for uploading and uploads it"""
     if 'modfile' not in request.files:
         # Checks that there is a file to be uploaded
-        flash('No file part')
+        flash('No file part', 'danger')
         return redirect('/games/upload')
     files = request.files['modfile']
     if files.filename == '':
         # Checks that the file has a name
-        flash('no selected file')
+        flash('No File Selected', 'danger')
         return redirect('/games/upload')
     if files and allowed_archive(files.filename):
         # Checks that the file is in the list of allowed file types
@@ -390,7 +389,7 @@ def upload_mod_file(request):
             Path.unlink(obj_path)
             return mod_file
         else:
-            flash('Something Went Wrong')
+            flash('Something Went Wrong', 'warning')
             return redirect('/games/upload')
 
 
@@ -398,12 +397,12 @@ def upload_mod_image(request):
     """Processes a mod image for uploading and uploads it"""
     if 'modimage' not in request.files:
         # Checks that there is a file to be uploaded
-        flash('No file part')
+        flash('No file part', 'danger')
         return redirect('/games/upload')
     files = request.files['modimage']
     if files.filename == '':
         # Checks that the file has a name
-        flash('no selected file')
+        flash('no selected file', 'danger')
         return redirect('/games/upload')
     if files and allowed_file(files.filename):
         # Checks that the file is in the list of allowed file types
