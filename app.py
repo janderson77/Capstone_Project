@@ -409,7 +409,7 @@ def upload_mod_image(request):
         return redirect('/games/upload')
     if files and allowed_file(files.filename):
         # Checks that the file is in the list of allowed file types
-        # files = request.files['modimage']
+        files = request.files['modimage']
         file_ext = Path(files.filename).suffix.lower()
         # Alters the file name so it's not malicious
 
@@ -419,34 +419,14 @@ def upload_mod_image(request):
         # Changes the file name to a randomly generated number to be used as the unique ID
 
         cwd = Path.cwd()
-        print("*******************************************")
-        print("*******************************************")
-        print("*******************************************")
-        print(
-            f"{cwd}")
+
         f = PurePath(cwd, 'uploads')
-        print("*******************************************")
-        print("*******************************************")
-        print("*******************************************")
-        print(
-            f"{f}")
         path = Path(f)
-        print("*******************************************")
-        print("*******************************************")
-        print("*******************************************")
-        print(
-            f"{path}")
         # Finds the uploads file path
 
         p_obj_path = PurePath(path, filename)
         obj_path = Path(p_obj_path)
         # Sets the path for the file to be saved at
-
-        print("*******************************************")
-        print("*******************************************")
-        print("*******************************************")
-        print(
-            f"{obj_path}")
 
         new_file = files.save(obj_path)
 
