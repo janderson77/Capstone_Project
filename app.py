@@ -419,15 +419,22 @@ def upload_mod_image(request):
         # Changes the file name to a randomly generated number to be used as the unique ID
 
         cwd = Path.cwd()
+        print(
+            f"cwd************************************{cwd}*******************************")
         f = PurePath(cwd, 'uploads')
+        print(
+            f"f************************************{f}*******************************")
         path = Path(f)
+        print(
+            f"path************************************{path}*******************************")
         # Finds the uploads file path
 
         p_obj_path = PurePath(path, filename)
         obj_path = Path(p_obj_path)
         # Sets the path for the file to be saved at
 
-        print(obj_path)
+        print(
+            f"************************************{obj_path}*******************************")
 
         new_file = files.save(obj_path)
 
