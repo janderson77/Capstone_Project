@@ -163,10 +163,11 @@ def showUserProfile(user_id):
     if len(userres) < 1:
         abort(404)
 
-    if g.user.id != user_id:
-        return render_template('/users/userprofile.html', user=user, mods=mods, img_url=IMG_BASE, profile_img=PROFILE_IMG_BASE, totalmods=totalmods)
+    if g.user:
+        if g.user.id == user_id:
+            return render_template('/users/userprofileown.html', user=user, mods=mods, img_url=IMG_BASE, profile_img=PROFILE_IMG_BASE, totalmods=totalmods)
 
-    return render_template('/users/userprofileown.html', user=user, mods=mods, img_url=IMG_BASE, profile_img=PROFILE_IMG_BASE, totalmods=totalmods)
+    return render_template('/users/userprofile.html', user=user, mods=mods, img_url=IMG_BASE, profile_img=PROFILE_IMG_BASE, totalmods=totalmods)
 
 
 #########################################################################################
