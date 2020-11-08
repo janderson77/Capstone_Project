@@ -427,6 +427,8 @@ def upload_mod_image(request):
         obj_path = Path(p_obj_path)
         # Sets the path for the file to be saved at
 
+        print(obj_path)
+
         new_file = files.save(obj_path)
 
         if obj_path.is_file():
