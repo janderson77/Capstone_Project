@@ -169,6 +169,8 @@ def showUserProfile(user_id):
         else:
             return render_template('/users/userprofile.html', user=user, mods=mods, img_url=IMG_BASE, profile_img=PROFILE_IMG_BASE, totalmods=totalmods)
 
+    return render_template('/users/userprofile.html', user=user, mods=mods, img_url=IMG_BASE, profile_img=PROFILE_IMG_BASE, totalmods=totalmods)
+
 
 #########################################################################################
 # Games Routes
