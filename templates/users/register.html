@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="breadcrumbs-area">
-                            <h1>Login</h1>
+                            <h1>Register For An Account</h1>
                             <ul>
                                 <li>
                                     <a href="/">Home</a>
@@ -23,13 +23,23 @@
             </div>
         </section>
         <!--=====================================-->
-        <!--=        Login Form Start        	=-->
+        <!--=        Register Form Start        =-->
         <!--=====================================-->
         <section class="error-section">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <div class="container d-flex flex-column align-items-center justify-content-center">
-                <div class="col-6 d-flex flex-column">
-                    <p>Already have an account? Login <a href="/users/login">HERE</a></p>
-                    <form method="POST" id="user_form">
+                <div class="col-6 d-flex flex-column align-items-center">
+                    <p>Already have an account? Login <a href="/users/login">HERE!</a></p>
+                    <form method="POST" id="user_form" enctype="multipart/form-data">
                         {{ form.hidden_tag() }}
                     
                         {% for field in form if field.widget.input_type != 'hidden' %}

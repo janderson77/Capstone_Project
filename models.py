@@ -27,7 +27,7 @@ class User(db.Model):
     password = db.Column(db.Text, nullable=False, unique=True)
 
     profile_img = db.Column(
-        db.Text, default='/static/images/default_profile.jpg')
+        db.Text, default='default_profile.jpg')
 
     mod = db.relationship('Mod')
 

@@ -10,7 +10,11 @@ class UserAddForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[Length(min=6)])
-    profile_img = StringField('(Optional) Image URL')
+    profile_img = FileField('Profile Image (Optional)',
+                            validators=[
+                                FileAllowed(['png', 'jpg', 'jpeg', 'gif'], "Images Only!")],
+                            render_kw={"accept": ".png, .jpg, .jpeg, .gif"}
+                            )
 
 
 class LoginForm(FlaskForm):

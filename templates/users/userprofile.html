@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}{{user.username}}'s Profile{% endblock %}
+{% block content %}
+        <!--=====================================-->
+        <!--=           Category Start        	=-->
+        <!--=====================================-->
+        <section class="inner-page-banner bg-common" data-bg-image="media/figure/banner1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumbs-area">
+                            <h1>{{user.username}}'s' Profile</h1>
+                            <ul>
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    Users
+                                </li>
+                                <li>{{user.username}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================-->
+        <!--=             Mods Start          	=-->
+        <!--=====================================-->
+        <section class="inner-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9">
+                        <div class="usermods-title-wrapper">
+                            <h3>{{user.username}}'s Mods</h3>
+                        </div>
+                        {% if totalmods > 0 %}
+                        {% for mod in mods %}
+                        <div class="post-list-layout3 align-items-center">
+                            <a href="/{{mod.game_id}}/mods/{{mod.id}}">
+                                <div class="item-img">
+                                    <img src="{{img_url}}{{mod.main_mod_image}}" alt="{{mod.name}}" class="list-img">
+                                </div>
+                            </a>
+                            <div class="item-content">
+                                <div class="post-meta">
+                                    <ul>
+                                        <li><i class="flaticon-clock"></i> {{mod.posted_at}}</li>
+                                        <li class="item-author"><i class="flaticon-user bg-green"></i><span>By</span><a href="/users/{{mod.user.id}}">{{mod.user.username}}</a></li>
+                                    </ul>
+                                </div>
+                                <h3 class="item-title profile-item-title"><a href="/games/{{mod.game_id}}/mods/{{mod.id}}"> {{mod.mod_name}}</a></h3>
+                                <p class="item-game"><a href="/games/{{mod.game_id}}">Game: <span class="profile-game-name">{{mod.game.game_title}}</span></a></p>
+                                <hr>
+                                <p class="list-descrip">{{mod.description}}</p>
+                            </div>
+                        </div>
+                        <hr class="post-list-layout3-hr">
+                        {% endfor %}
+                        {% else %}
+                            <div class="no-mods">
+                                This User Hasn't Uploaded Any Mods Yet.
+                            </div>
+                        {% endif %}
+
+
+                        <div class="pagination-layout1">
+                            <!-- <ul>
+                                <li><a href="#" class="active">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="col-xl-3 sidebar-widget-xl">
+                        <div class="widget widget-author">
+                            <div class="heading-layout1">
+                                <h3 class="heading-title">About {{user.username}}</h3>
+                            </div>
+                            <div class="about-author">
+                                <div class="item-img">
+                                    <img src="{{profile_img}}{{user.profile_img}}" alt="Author">
+                                </div>
+                                <div class="item-content">
+                                    <h3 class="author-name">Steven Jones</h3>
+                                    <p>Mods: {{totalmods}}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget widget-ad">
+                            <a href="#">
+                                <img src="media/figure/ad5.jpg" alt="Ad">
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

@@ -56,9 +56,8 @@
                             <div class="header-topbar-layout1">
                                 <div class="header-top-left">
                                     <ul>
-                                        <!-- <li><i class="fas fa-phone-volume"></i>Call : + (123) 6418 8990 </li> -->
                                         {% if g.user %}
-                                        <li><i class="far fa-user"></i><a href="users/{{g.user.id}}">{{g.user.username}}</a></li>
+                                        <li><i class="far fa-user"></i><a href="/users/{{g.user.id}}">{{g.user.username}}</a></li>
                                         {% else %}
                                         <li><i class="far fa-user"></i><a href="/users/login">Log in / Register</a></li>
                                         {% endif %}

@@ -29,8 +29,8 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 CURR_USER_KEY = "curr_user"
 
 MOD_BASE_ID = 'https://mod-page.s3-us-west-1.amazonaws.com/mods/'
-
 IMG_BASE = 'https://mod-page.s3-us-west-1.amazonaws.com/mods/'
+PROFILE_IMG_BASE = 'https://mod-page.s3-us-west-1.amazonaws.com/users/'
 
 app = Flask(__name__)
 
@@ -44,7 +44,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "it's a secret")
 
 app.config['UPLOAD_FOLDER'] = Path('uploads')
 
-toolbar = DebugToolbarExtension(app)
+# toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
 
@@ -73,6 +73,11 @@ def do_logout():
         del session[CURR_USER_KEY]
 
 
+#########################################################################################
+# Users Routes
+#########################################################################################
+
+
 @app.route('/users/register', methods=['GET', 'POST'])
 def register():
     if CURR_USER_KEY in session:
@@ -80,22 +85,32 @@ def register():
     form = UserAddForm()
 
     if form.validate_on_submit():
+
+        if len(request.files['profile_img'].filename) > 0:
+            res = upload_user_image(request)
+            profile_image = res['id']
+        else:
+            profile_image = User.profile_img.default.arg
+
         try:
-            user = User.signup(
+            newuser = User.signup(
                 username=form.username.data,
                 password=form.password.data,
                 email=form.email.data,
-                profile_img=form.profile_img.data or User.profile_img.default.arg,
+                profile_img=profile_image
             )
+
             db.session.commit()
+
+            user = User.query.filter_by(username=newuser.username).all()
 
         except IntegrityError as e:
             flash("Username already taken", 'danger')
             return render_template('users/register.html', form=form)
 
-        do_login(user)
+        do_login(newuser)
 
-        return redirect("/")
+        return redirect(f"/users/{user[0].id}")
 
     else:
         return render_template('users/register.html', form=form)
@@ -120,8 +135,6 @@ def login():
 
     return render_template('users/login.html', form=form)
 
-# @app.route('/users/<int:user_id>')
-
 
 @app.route('/logout')
 def logout():
@@ -133,10 +146,27 @@ def logout():
     return redirect("/users/login")
 
 
-@app.route('/contact')
-def show_contact_page():
-    """Renders the contact page"""
-    return render_template('contact.html')
+@app.route('/users/<int:user_id>')
+def showUserProfile(user_id):
+    """
+    Renders a users profile page with edit permissions only if it's the logged in user's own profile
+
+    Right now it only shows general information. No profile editing has been implemented
+    """
+    userres = User.query.filter_by(id=user_id).all()
+    modsres = Mod.query.filter_by(upload_user_id=user_id).join(Game).all()
+    user = userres[0]
+    mods = modsres
+    totalmods = len(mods)
+
+    if len(userres) < 1:
+        abort(404)
+
+    if g.user.id != user_id:
+        return render_template('/users/userprofile.html', user=user, mods=mods, img_url=IMG_BASE, profile_img=PROFILE_IMG_BASE, totalmods=totalmods)
+
+    return render_template('/users/userprofileown.html', user=user, mods=mods, img_url=IMG_BASE, profile_img=PROFILE_IMG_BASE, totalmods=totalmods)
+
 
 #########################################################################################
 # Games Routes
@@ -168,6 +198,11 @@ def show_games_list():
     games = Game.query.all()
 
     return render_template('games/games.html', games=games)
+
+
+#########################################################################################
+# Mods Routes
+#########################################################################################
 
 
 @app.route('/mods/all')
@@ -241,7 +276,7 @@ def allowed_archive(filename):
 
 @app.route('/games/upload', methods=["GET", "POST"])
 def show_mod_upload_page():
-    """Renders the mod upoad page and handles the upload of mod files"""
+    """Renders the mod upload page and handles the upload of mod files"""
     form = UploadModForm()
     form.modgame.choices = [(g.id, g.game_title)
                             for g in Game.query.all()]
@@ -292,6 +327,12 @@ def show_mods_list(game_id):
         if mods.has_prev else None
 
     return render_template('mods/list.html', mods=mods.items, next_url=next_url, prev_url=prev_url, img_url=img_url, game=game[0], page=page, game_id=game[0].id)
+
+
+@app.route('/contact')
+def show_contact_page():
+    """Renders the contact page"""
+    return render_template('contact.html')
 
 
 ##############################################################################
@@ -401,6 +442,57 @@ def upload_mod_image(request):
             mod_image = {'id': filename}
             Path.unlink(obj_path)
             return mod_image
+
+        return res
+
+
+def upload_user_image(request):
+    """Processes a user profile image for uploading and uploads it"""
+    if 'profile_img' not in request.files:
+        # Checks that there is a file to be uploaded
+        return
+    files = request.files['profile_img']
+    if files.filename == '':
+        # Checks that the file has a name
+        flash('no selected file')
+        return redirect('/users/register')
+    if files and allowed_file(files.filename):
+        # Checks that the file is in the list of allowed file types
+        # files = request.files['modimage']
+        file_ext = Path(files.filename).suffix.lower()
+        # Alters the file name so it's not malicious
+
+        filename = str(uuid.uuid1().int)
+        filename = f"{filename}{file_ext}"
+        files.filename = filename
+        # Changes the file name to a randomly generated number to be used as the unique ID
+
+        cwd = Path.cwd()
+        f = PurePath(cwd, 'uploads')
+        path = Path(f)
+        # Finds the uploads file path
+
+        p_obj_path = PurePath(path, filename)
+        obj_path = Path(p_obj_path)
+        # Sets the path for the file to be saved at
+
+        new_file = files.save(obj_path)
+
+        if obj_path.is_file():
+            upload_file_bucket = 'mod-page'
+            upload_file_key = 'users/' + filename
+            try:
+                file_obj = open(obj_path, 'rb')
+
+                res = client.upload_fileobj(
+                    file_obj, upload_file_bucket, upload_file_key)
+                file_obj.close()
+            except ClientError as e:
+                errors = logging.error(e)
+                return errors
+            user_image = {'id': filename}
+            Path.unlink(obj_path)
+            return user_image
 
         return res
 

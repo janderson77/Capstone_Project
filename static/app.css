@@ -6412,3 +6412,28 @@ input.form-control {
 	height: 1px;
 	background-image: linear-gradient(to right, rgba(248, 1, 54, 0), rgba(248, 1, 54, 0.75), rgba(248, 1, 54, 0));
 }
+
+.post-list-layout3 .item-content .item-title .profile-item-title {
+	margin-bottom: 0;
+}
+
+.item-game {
+	margin-bottom: 0;
+}
+
+.item-game a {
+	color: black;
+	text-decoration: none;
+}
+
+.profile-game-name {
+	font-weight: bold;
+}
+
+.usermods-title-wrapper {
+	text-align: center;
+}
+
+.no-mods {
+	text-align: center;
+}

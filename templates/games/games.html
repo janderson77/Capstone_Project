@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title%}{% endblock %}
+{% block title%}Games{% endblock %}
 {% block content %}
         <!--=====================================-->
         <!--=           Category Start        	=-->
@@ -25,10 +25,12 @@
 
                         {% for game in games %}
                         <div class="post-list-layout3 align-items-center">
+                        <a href="/games/{{game.id}}/mods">
                             <div class="item-img">
-                                <img src="{{game.game_image}}_sm.jpg" alt="Post">
-                                <div class="item-tag bg-blueviolet">{{game.game_genre}}</div>
+                            <img src="{{game.game_image}}_sm.jpg" alt="Post">
+                            <div class="item-tag bg-blueviolet">{{game.game_genre}}</div>
                             </div>
+                        </a>
                             <div class="item-content">
                                 <div class="post-meta">
                                     <ul>
